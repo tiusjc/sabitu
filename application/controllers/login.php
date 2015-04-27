@@ -1,0 +1,110 @@
+<?php
+
+    if (!defined('BASEPATH'))
+        exit('No direct script access allowed');
+
+    class Login extends CI_Controller {
+
+        function __construct() {
+            parent::__construct();
+            $this->load->model('login_model');
+            $this->load->model('adm_model');
+            $this->load->model('usuarios_model');
+            $this->load->model('form_cadastro_model');
+            $this->load->model('form_model');
+
+
+            $this->_init();
+        }
+
+        private function _init()
+        {
+             $this->output->set_template('login');
+
+             $this->output->enable_profiler(TRUE);
+
+        }
+
+        function index() {
+            $dados = array();
+            $this->form_validation->set_rules('email', 'Email', 'required');
+            $this->form_validation->set_rules('senha', 'Senha', 'required');
+          
+            $this->form_validation->set_error_delimiters('<p class="error">', '</p>');
+
+            if ($this->form_validation->run() == FALSE){
+              
+                $data['form'] = preencher_dropdown('form','id','descricao','sigla');
+
+                $this->load->view( 'login_view', $data );
+            }else{
+          
+                $usuarios_id = $this->usuarios_model->validarUsuario_id();
+        
+                if ( $usuarios_id ){
+                    
+                    $adm   = $this->adm_model->validate_adm( $usuarios_id );
+                    
+                    $form_id      = $this->input->post('form_id');
+                    $form_nome    = $this->input->post('form_nome');
+                    $form_sigla   = $this->form_model->getField($form_id,'sigla');
+                    $form_rodape  = $this->form_model->getField($form_id,'rodape');
+                    $email        = $this->input->post('email');
+
+                    $this->session->set_userdata( 'adm', $adm );
+                    $this->session->set_userdata( 'usuarios_id' , $usuarios_id );
+                    $this->session->set_userdata( 'email'       , $email );
+                    $this->session->set_userdata( 'form_id'     , $form_id );
+                    $this->session->set_userdata( 'form_nome'   , $form_nome );
+                    $this->session->set_userdata( 'form_sigla'  , $form_sigla );
+                    $this->session->set_userdata( 'form_rodape' , $form_rodape );
+                    
+                    $this->session->set_userdata( 'logado', true );
+                    
+                    if( $adm ) {
+                        
+
+                        redirect('form');
+
+                    }else{
+
+                        if( $form_id ){ 
+                        
+                            $form_cadastro_id = $this->form_cadastro_model->validarForm_cadastro_id($usuarios_id, $form_id, $form_sigla);
+                            
+                            $this->session->set_userdata( 'form_cadastro_id', $form_cadastro_id );
+                            
+                            if( $this->usuarios_model->validarUsuario_nome( $usuarios_id ) ){
+                                  
+                                if( $form_cadastro_id ){ 
+                                    
+                                   redirect('form_cadastro');
+                                    
+                           
+                                } else{
+
+                                    redirect('form_cadastro/index/add'); 
+                                }
+
+                            }else{
+
+                                redirect('usuarios');  
+                            }
+                        }else{
+                            $this->session->set_flashdata('mensagem',
+                            '<div class="alert alert-danger">Atenção: O Formulário '. $form_sigla. ' ainda não existe!</div>');
+                             redirect('login/logout');
+
+                        }
+                    }
+                }else{
+                    redirect('/');
+                }
+            }
+        } 
+
+        function logout(){
+            $this->session->sess_destroy();
+            redirect('/');     
+        }
+}

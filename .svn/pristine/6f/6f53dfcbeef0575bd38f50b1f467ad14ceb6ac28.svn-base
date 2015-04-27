@@ -1,0 +1,101 @@
+<?php $controller = $this->router->fetch_class(); ?>
+<html>
+	<head>
+		<title><?php echo $title; ?></title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<?php
+
+		if(!empty($meta))
+		foreach($meta as $name=>$content){
+			echo "\n\t\t";
+			?><meta name="<?php echo $name; ?>" content="<?php echo $content; ?>" /><?php
+				 }
+		echo "\n";
+
+		if(!empty($canonical))
+		{
+			echo "\n\t\t";
+			?><link rel="canonical" href="<?php echo $canonical?>" /><?php
+
+		}
+		echo "\n\t";
+
+		foreach($css as $file){
+		 	echo "\n\t\t";
+			?><link rel="stylesheet" href="<?php echo $file; ?>" type="text/css" /><?php
+		} echo "\n\t";
+
+		foreach($js as $file){
+				echo "\n\t\t";
+				?><script src="<?php echo $file; ?>"></script><?php
+		} echo "\n\t";
+		?>
+
+		<!-- jQuery -->
+		<script src="<?php echo base_url().'assets/grocery_crud/js/jquery-1.10.2.min.js'; ?>"></script>
+		
+		<!-- BOOTSTRAP -->
+		<link rel="stylesheet" href="<?php echo base_url().'assets/bootstrap/css/bootstrap.min.css';?>">
+
+	 	<script src="<?php echo base_url().'assets/bootstrap/js/bootstrap.min.js'; ?>"></script>
+	 	<script src="<?php echo base_url().'assets/myjs.js'; ?>"></script>
+
+		<!-- CSS-TEMA-UNIFESP -->
+		<link rel="stylesheet" href="<?php echo base_url().'assets/bootstrap/css/min.css';?>">	
+				
+		<!-- jQuery -->	
+		<script src="<?php echo 'assets/inputmask/js/jquery.inputmask.js';?>" type="text/javascript"></script>
+		<script src="<?php echo 'assets/inputmask/js/jquery.inputmask.extensions.js';?>" type="text/javascript"></script>
+		<script src="<?php echo 'assets/inputmask/js/jquery.inputmask.regex.extensions.js';?>" type="text/javascript"></script>
+		<script src="<?php echo 'assets/jquery.maskedinput.js';?>" type="text/javascript"></script>
+
+	    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+	    <!--[if lt IE 9]>
+	      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	    <![endif]-->
+	</head>
+  	<body>
+		<div class="container">
+	  		<div class="col-md-10 col-lg-offset-1">
+  	    		<div class="row">
+		  	    	<div class="header">
+						<div class="panel-heading">	        
+			        		<div class="panel-title">        
+			        		    <div class="row">
+				        			<div class="col-md-3">
+						  				<img alt="Unifesp" src="<?php echo base_url('assets/logo.png'); ?>" />
+						  			</div> 
+							        <div class="col-md-9">
+							        	<h3><?php echo $this->config->item('app_name');?></h3>
+							        	<h4><?php echo $this->config->item('app_desc');?></h4>
+							        	<h4>Campus São José dos Campos</h4>
+							        </div>
+						        </div>
+			        		</div>
+						</div> 
+				   	</div> 
+					<div><?php echo $this->session->flashdata("mensagem");?></div>
+				</div>
+				<!-- CONTEÚDO -->
+    			<div class="row">
+    				<div class="panel-body">	   
+	    				<?php echo $output;?>
+	    			</div>	
+	    		</div>
+	    		<!-- RODAPÉ -->
+    			<div class="row">
+					<div class="panel-body">
+						<div class="alert alert-info" role="alert">
+							<?php 
+							echo '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Dúvidas/Informações:<br/>';
+	      					echo 'Sobre o processo seletivo: pos.sjc@unifesp.br<br/>';	  	  
+	      					echo 'Sobre uso do sistema: suporte.sjc@unifesp.br';
+	      					?>
+	  					</div>
+					</div>
+	   			</div>
+	    	</div>
+	    </div> 
+	</body>
+</html>
