@@ -277,4 +277,8 @@ class Campos extends MY_Controller {
 
       }
 }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 415f2029e56465d1fc22f65a3e9fefe0f3410cbc
