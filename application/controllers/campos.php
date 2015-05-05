@@ -22,7 +22,7 @@ class Campos extends MY_Controller {
     try {
           if(!$this->form_id){
             $this->session->set_flashdata('mensagem',
-            '<div class="alert alert-danger">Atsenção: Selecione um Formulário '. $this->form_sigla. ' para criar campos!</div>');
+            '<div class="alert alert-danger">Atexxxnção: Selecione um Formulário '. $this->form_sigla. ' para criar campos!</div>');
             redirect('form_cadastro');
           }
 
