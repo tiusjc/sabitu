@@ -40,7 +40,7 @@
 		// Merge in site config defaults
 		$arrSiteConfig = array_merge(
 			array(
-				'repository' => '*',
+				'repository'  => '*',
 				'branch'     => '*',
 				'username'   => '*',
 				'execute'    => array()
