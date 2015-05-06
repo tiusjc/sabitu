@@ -22,7 +22,7 @@
 	 *	Configuration Definitions
 	 *	-------------------------
 	 *
-	 *	Defaults:
+	 *	  Defaults:
 	 *		'repository' => '*'
 	 *		'branch' => '*'
 	 *		'username' => '*'
