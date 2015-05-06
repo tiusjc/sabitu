@@ -41,9 +41,9 @@
 		$arrSiteConfig = array_merge(
 			array(
 				'repository' => '*',
-				'branch'   => '*',
-				'username' => '*',
-				'execute'  => array()
+				'branch'     => '*',
+				'username'   => '*',
+				'execute'    => array()
 			),
 			$arrSiteConfig
 		);
