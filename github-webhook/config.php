@@ -30,8 +30,8 @@
 	$boolDebugLogging = TRUE;
 
 	$arrConfig['NICE_CAPTION'] = array(
-		'repository' => 'MY_REPO_NAME',
-		'execute' => array(
-			'cd /var/www/MY_WEB_FOLDER; git reset --hard HEAD 2>&1; git clean -f -d 2>&1; git pull 2>&1'
+		'repository' => 'sabitu',
+    	'execute' => array(
+			'cd /var/www/sabitu; git reset --hard HEAD 2>&1; git clean -f -d 2>&1; git pull 2>&1'
 		)
 	);

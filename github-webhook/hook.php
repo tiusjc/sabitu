@@ -21,13 +21,13 @@
 
 	// Make sure the configuration is setup
 	if (!isset($arrConfig) || empty($arrConfig)) {
-		error_log("GitHub Webhook Error: missing config.php or no configuration definitions setup");
+		error_log("GitHub Webhook Erro: Falta config.php ou nenhuma definição de configuração");
 		exit;
 	}
 
 	// Check for the GitHub WebHook Payload
 	if (!isset($_POST['payload'])) {
-		error_log("GitHub Webhook Error: missing expected POST parameter 'payload'");
+		error_log("GitHub Webhook Error: faltando POST parâmetro 'payload'");
 		exit;
 	}
 
@@ -74,7 +74,7 @@
 				exec($arrCommand, $arrOutput);
 
 				if (isset($boolDebugLogging) && $boolDebugLogging) {
-					error_log("GitHub Webhook Update (" . $strSiteName . "):\n" . implode("\n", $arrOutput));
+					error_log("GitHub Webhook Atualizado (" . $strSiteName . "):\n" . implode("\n", $arrOutput));
 				}
 			}
 		}
