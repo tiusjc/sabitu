@@ -34,5 +34,7 @@
 	$arrConfig['NICE_CAPTION'] = array(
 		'repository' => 'sabitu',
         'branch'     => 'master',
-    	'execute'    => array('cd /var/www/sabitu; git --work-tree=/var/www/sabitu checkout -f 2>&1')
+    	//'execute'    => array('cd /var/www/sabitu; git --work-tree=/var/www/sabitu checkout -f 2>&1')
+        'execute'    => array('cd /var/www/sabitu; git --work-tree=/var/www/sabitu checkout -f 2>&1')
+
 	);
