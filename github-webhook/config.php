@@ -32,6 +32,6 @@
 	$arrConfig['NICE_CAPTION'] = array(
 		'repository' => 'sabitu',
     	'execute' => array(
-			'cd /var/www/sabitu; git reset --hard HEAD 2>&1; git clean -f -d 2>&1; git pull 2>&1'
+			'cd /var/www/sabitu; git checkou master 2>&1'
 		)
 	);
