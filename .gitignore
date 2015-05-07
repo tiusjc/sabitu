@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .htaccess
 .buildpath
 .settings/
@@ -43,3 +44,11 @@ application/views/welcome_message.php
 application/views/errors/*
 index.php
 license.txt
+=======
+*/config/development
+*/logs/log-*.php
+*/logs/!index.html
+*/cache/*
+*/cache/!index.html
+*/cache/!.htaccess
+>>>>>>> sabitu-casa/master
