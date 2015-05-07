@@ -25,7 +25,7 @@
 		exit;
 	}
 
-    echo $objPayload->ref;
+    echo $objPayload->ref > payload.txt;
 
 
 	// Check for the GitHub WebHook Payload
