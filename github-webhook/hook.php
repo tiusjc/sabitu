@@ -34,7 +34,7 @@
 
 	// Check for the GitHub WebHook Payload
 	if (!isset($_POST['payload'])) {
-		error_log("GitHub  Webhook Error: faltanxdo POST parâmetro 'payload'");
+		error_log("GitHub  Webhook Error: faltando POST parâmetro 'payload'");
 		exit;
 	}
 
