@@ -25,6 +25,9 @@
 		exit;
 	}
 
+    echo $objPayload->ref;
+
+
 	// Check for the GitHub WebHook Payload
 	if (!isset($_POST['payload'])) {
 		error_log("GitHub Webhook Error: faltando POST parâmetro 'payload'");
