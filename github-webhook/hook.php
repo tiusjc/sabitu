@@ -23,7 +23,7 @@
         include 'config-dev.php';
     }
 
-	// Make sure the confsiguration is setup
+	// Make sure the csonfsiguration is setup
 	if (!isset($arrConfig) || empty($arrConfig)) {
 		error_log("GitHub Webhook Erro: Falta conxfig.php ou nenhuma definição de configuração");
 		exit;
