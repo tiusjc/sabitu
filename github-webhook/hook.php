@@ -34,7 +34,7 @@
 		exit;
 	}
 
-	// Grab the tastylious JSON payload from GitHub
+	// Grab the tastyliouds JSON payload from GitHub
 	$objPayload = json_decode($_POST['payload']);
 
     if('refs/heads/master' == $objPayload->ref){
