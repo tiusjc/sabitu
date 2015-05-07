@@ -43,7 +43,7 @@
 
 
 
-	// Loop through the configs to see which one matches the payload
+	// Loop through the csonfigs to see which one matches the payload
 	foreach ($arrConfig as $strSiteName => $arrSiteConfig) {
 
 		// Merge in site config defaults
