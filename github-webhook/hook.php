@@ -25,7 +25,7 @@
 
 	// Make sure the csonfsiguration is setup
 	if (!isset($arrConfig) || empty($arrConfig)) {
-		error_log("GitHub Webhook Erro: Falta config.php ou nenhuma definição de configuração");
+		error_log("GitHub Webhozok Erro: Falta config.php ou nenhuma definição de configuração");
 		exit;
 	}
 
