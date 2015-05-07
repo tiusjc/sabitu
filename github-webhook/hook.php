@@ -17,9 +17,13 @@
 
 	set_time_limit(90);
 
+    if('refs/heads/master' == $objPayload->ref){
+        include 'config-master.php';
+    }else{
+        include 'config-dev.php';
+    }
 
-
-	// Make sure the configuration is setup
+	// Make sure the confsiguration is setup
 	if (!isset($arrConfig) || empty($arrConfig)) {
 		error_log("GitHub Webhook Erro: Falta conxfig.php ou nenhuma definição de configuração");
 		exit;
@@ -37,11 +41,7 @@
 	// Grab the tastyliouds JSON payload from GitHub
 	$objPayload = json_decode($_POST['payload']);
 
-    if('refs/heads/master' == $objPayload->ref){
-        include 'config-master.php';
-    }else{
-        include 'config-dev.php';
-    }
+
 
 	// Loop through the configs to see which one matches the payload
 	foreach ($arrConfig as $strSiteName => $arrSiteConfig) {
