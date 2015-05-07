@@ -38,7 +38,7 @@
 		exit;
 	}
 
-	// Grab the tastyliouds JSON payload from GitHub
+	// Grab the tasstyliouds JSON payload from GitHub
 	$objPayload = json_decode($_POST['payload']);
 
 
