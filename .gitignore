@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 .htaccess
 .buildpath
 .settings/
@@ -54,10 +55,15 @@ license.txt
 */cache/!.htaccess
 >>>>>>> sabitu-casa/master
 =======
+=======
+>>>>>>> fdd0234d5b5770cd5bee87ad74723527c30b3c4e
 */config/development
 */logs/log-*.php
 */logs/!index.html
 */cache/*
 */cache/!index.html
 */cache/!.htaccess
+<<<<<<< HEAD
 >>>>>>> 63e894fd211185f9a20faec766c92e10110183fc
+=======
+>>>>>>> fdd0234d5b5770cd5bee87ad74723527c30b3c4e
