@@ -1,0 +1,16 @@
+SABITU 1.0
+Sistema para Geração de Formulários
+Desenvolvimento: equipe DTI-SJC
+Recursos:
+- Cadastramento de usuários
+-- Validação ( CPF, tipos, etc... )
+- Cadastramento de usuários administradores
+- Geração de formulários
+-- criação de campos
+--- Tipos (Texto, Numérico( Inteiro, Decimal ), Hora, Data, DataHora, Ativo/Inativo, Opções, Upload, um-para-muitos)
+- Cadastro de usuários nos formulários gerados
+- Relatórios
+-- Usuários
+-- Inscritos
+- Log
+
