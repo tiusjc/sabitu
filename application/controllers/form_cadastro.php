@@ -8,7 +8,7 @@ class form_cadastro extends MY_Controller{
       parent::__construct();
       
       $this->load->model('form_cadastro_model');
-      $this->load->model('usuario_model');
+      $this->load->model('usuarios_model');
       $this->load->model('form_model');
       $this->session->set_userdata( 'check_id', $this->form_cadastro_id );
       $this->output->enable_profiler(TRUE);
@@ -32,7 +32,7 @@ class form_cadastro extends MY_Controller{
         $this->crud->unset_read();
       }else{
 
-          if( $this->usuario_model->validarUsuario_nome( $this->usuario_id ) ){
+          if( $this->usuarios_model->validarUsuario_nome( $this->usuario_id ) ){
             
          
               redirect('form_cadastro/form');
