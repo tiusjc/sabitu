@@ -29,7 +29,7 @@ class Campos extends MY_Controller {
 
           $nome_tabela = "campos";
           
-          //CRIA A TABELA DE CAMPOS DO PROCESSO SELETIVO
+          //CRIA A TABELA DE CAMPOS
           
           if (!$this->db->table_exists( $nome_tabela ) ){
 
@@ -211,11 +211,16 @@ class Campos extends MY_Controller {
                   $this->dbforge->add_key('id', TRUE);
                   $this->dbforge->add_key('form_id', TRUE);
                   $this->dbforge->create_table( $nome_tabela.'_'.$array_post['field'] );
-
-
+                  
+                  // PEGA A QUANTIDADE DE CAMPOS COM DETERMINADO NOME QUE É DO TIPO "UM-PARA-MUITOS"
+                  $qtd_um_para_muitos =   $this->campos_model->getCountField(form_id, $array_post['field']);
+                
+                  if( $qtd_um_para_muitos == 0){
+                   $qtd_um_para_muitos = 1;
+                  }   
+                   
                   //CRIA A TABELA DE SIGLA_DETALHES
-        
-                  $this->dbforge->drop_table($nome_tabela.'_'.$array_post['field'].'_');
+                  $this->dbforge->drop_table($nome_tabela.'_'.$array_post['field'].'_'.$qtd_um_para_muitos);
     
                   $fields = array(
                       

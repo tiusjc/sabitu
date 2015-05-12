@@ -144,7 +144,7 @@ class Form extends MY_Controller {
   function cria_table( $array_post ){
 
 
-        if (!$this->db->table_exists( 'user_logs' ) ){
+        if (!$this->db->table_exists( 'logs' ) ){
 
             $fields = array(
                         
