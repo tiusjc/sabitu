@@ -177,6 +177,7 @@ class Campos extends MY_Controller {
         } else {
 
            if( $array_post['type'] == 'UM-PARA-MUITOS' ){
+              
                $array_post['type'] = 'VARCHAR';
                
                if (!$this->db->table_exists( $nome_tabela.'_'.$array_post['field'] ) ){
@@ -239,14 +240,14 @@ class Campos extends MY_Controller {
                   $this->dbforge->add_field($fields);
                   $this->dbforge->add_key($nome_tabela.'_id', TRUE);
                   $this->dbforge->add_key($array_post['field'].'_id', TRUE);
-                  $this->dbforge->create_table($nome_tabela.'_'.$array_post['field'].'_');
+                  $this->dbforge->create_table($nome_tabela.'_'.$array_post['field'].'_'.$qtd_um_para_muitos);
            }
 
         }
         $size = "(".$array_post['size'].")";
         $this->db->simple_query("ALTER TABLE ".$nome_tabela." ADD ".$array_post['field']." ".$array_post['type'].$size);
 
-	      return $array_post;
+	    return $array_post;
     }
 
    function delete_field( $primary_key ){
