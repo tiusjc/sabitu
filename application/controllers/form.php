@@ -81,7 +81,7 @@ class Form extends MY_Controller {
     public function count_campos($value, $row)
     {
       if($this->db->table_exists($row->sigla)){
-        $query_campo  = $this->db->query('SELECT COUNT(*) AS qtd_campos FROM information_schema.columns WHERE table_schema ="sabitu" AND table_name ="'.$row->sigla.'"');
+        $query_campo  = $this->db->query('SELECT COUNT(*) AS qtd_campos FROM information_schema.columns WHERE table_schema ="web_sabitu" AND table_name ="'.$row->sigla.'"');
         $campos = $query_campo->row();
         return $campos->qtd_campos - 4;
       }else{
@@ -154,7 +154,7 @@ class Form extends MY_Controller {
                          'auto_increment'       => TRUE
                          ),
 
-                         'usuarios_id'         => array(
+                         'usuario_id'         => array(
                          'type'                 => 'INT',
                          'constraint'           => 11 
                          ),
@@ -193,7 +193,7 @@ class Form extends MY_Controller {
                       'auto_increment' => TRUE
                        ),
 
-                      'usuarios_id'        => array(
+                      'usuario_id'        => array(
                       'type'           => 'INT',
                       'constraint'     => 11 
                        ),
