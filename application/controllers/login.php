@@ -52,7 +52,7 @@
                     $email        = $this->input->post('email');
 
                     $this->session->set_userdata( 'adm', $adm );
-                    $this->session->set_userdata( 'usuarios_id' , $usuarios_id );
+                    $this->session->set_userdata( 'usuario_id' , $usuario_id );
                     $this->session->set_userdata( 'email'       , $email );
                     $this->session->set_userdata( 'form_id'     , $form_id );
                     $this->session->set_userdata( 'form_nome'   , $form_nome );
