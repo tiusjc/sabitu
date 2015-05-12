@@ -5,8 +5,11 @@ if (!defined('BASEPATH'))
 
 class Campos extends MY_Controller {
 
-      function __construct(){
-      parent::__construct();
+    private $qtd_um_para_muitos;
+    private $nome_tabela_um_para_muitos;
+    
+    function __construct(){
+          parent::__construct();
       
       $this->load->model('form_cadastro_model');
       $this->load->model('usuarios_model');
@@ -15,6 +18,7 @@ class Campos extends MY_Controller {
 
       $this->load->dbforge();
       $this->output->enable_profiler(TRUE);
+      $this->qtd_um_para_muitos = 0;
     }
 
     public function index(){
@@ -27,11 +31,11 @@ class Campos extends MY_Controller {
           }
 
 
-          $nome_tabela = "campos";
+          $nome_tabela_campos = "campos";
           
           //CRIA A TABELA DE CAMPOS
           
-          if (!$this->db->table_exists( $nome_tabela ) ){
+          if (!$this->db->table_exists( $nome_tabela_campos ) ){
 
             $fields = array(
                         
@@ -118,11 +122,11 @@ class Campos extends MY_Controller {
             $this->dbforge->add_field($fields);
             $this->dbforge->add_key('id', TRUE);
             $this->dbforge->add_key('form_id', TRUE);
-            $this->dbforge->create_table($nome_tabela);
+            $this->dbforge->create_table($nome_tabela_campos);
           }
 
 
-          $this->crud->columns("form_id", "field", "type", "size", "label", "rules", "grid", "add_edit", "upload", "ordem");
+          $this->crud->columns("form_id", "field", "type", "size", "label", "tab_um_para_muitos","rules", "grid", "add_edit", "upload", "ordem");
           $this->crud->required_fields('field' , 'type');
 
           $this->crud->display_as('form_id','Formulário');
@@ -135,7 +139,7 @@ class Campos extends MY_Controller {
           $this->crud->display_as('add_edit','Mostra na Inclusão/Edição');
           $this->crud->display_as('upload','Campo para upload de Arquivo');
           
-          $this->crud->set_table( $nome_tabela );
+          $this->crud->set_table( $nome_tabela_campos );
           $this->crud->order_by('form_id asc,ordem');
 
           $this->crud->set_subject('Cadastro de Campos');
@@ -168,11 +172,11 @@ class Campos extends MY_Controller {
 
    function cria_field( $array_post ){
 
-        $nome_tabela = $this->form_model->getField($array_post['form_id'],'sigla');
+        $nome_tabela_sigla = $this->form_model->getField($array_post['form_id'],'sigla');
              
         if ($array_post['type'] == 'DATETIME' || $array_post['type'] == 'TEXT') {	
 	  
-	         $this->db->simple_query("ALTER TABLE ".$nome_tabela." ADD ".$array_post['field']." ".$array_post['type']. " null" );
+	         $this->db->simple_query("ALTER TABLE ".$nome_tabela_sigla." ADD ".$array_post['field']." ".$array_post['type']. " null" );
           
         } else {
 
@@ -180,7 +184,7 @@ class Campos extends MY_Controller {
               
                $array_post['type'] = 'VARCHAR';
                
-               if (!$this->db->table_exists( $nome_tabela.'_'.$array_post['field'] ) ){
+               if (!$this->db->table_exists( $$nome_tabela_sigla.'_'.$array_post['field'] ) ){
 
                   $fields = array(
                          
@@ -211,21 +215,21 @@ class Campos extends MY_Controller {
                   $this->dbforge->add_field($fields);
                   $this->dbforge->add_key('id', TRUE);
                   $this->dbforge->add_key('form_id', TRUE);
-                  $this->dbforge->create_table( $nome_tabela.'_'.$array_post['field'] );
+                  $this->dbforge->create_table( $nome_tabela_sigla.'_'.$array_post['field'] );
                   
                   // PEGA A QUANTIDADE DE CAMPOS COM DETERMINADO NOME QUE É DO TIPO "UM-PARA-MUITOS"
-                  $qtd_um_para_muitos =   $this->campos_model->getCountField(form_id, $array_post['field']);
+                  $this->qtd_um_para_muitos =   $this->campos_model->getCountField(form_id, $array_post['field']);
                 
                   if( $qtd_um_para_muitos == 0){
                    $qtd_um_para_muitos = 1;
                   }   
                    
                   //CRIA A TABELA DE SIGLA_DETALHES
-                  $this->dbforge->drop_table($nome_tabela.'_'.$array_post['field'].'_'.$qtd_um_para_muitos);
+                  $this->dbforge->drop_table( $nome_tabela_sigla.'_'.$array_post['field'].'_'.$this->qtd_um_para_muitos );
     
                   $fields = array(
                       
-                      $nome_tabela.'_id' => array(
+                      $nome_tabela_sigla.'_id' => array(
                       'type'               => 'INT',
                       'constraint'         => 11 
                       ),
@@ -238,14 +242,16 @@ class Campos extends MY_Controller {
                   );
 
                   $this->dbforge->add_field($fields);
-                  $this->dbforge->add_key($nome_tabela.'_id', TRUE);
+                  $this->dbforge->add_key($nome_tabela_sigla.'_id', TRUE);
                   $this->dbforge->add_key($array_post['field'].'_id', TRUE);
-                  $this->dbforge->create_table($nome_tabela.'_'.$array_post['field'].'_'.$qtd_um_para_muitos);
+                  $this->dbforge->create_table($nome_tabela_sigla.'_'.$array_post['field'].'_'.$this->qtd_um_para_muitos);
+                
+                  $this->nome_tabela_sigla_um_para_muitos = $nome_tabela_sigla.'_'.$array_post['field'].'_'.$this->qtd_um_para_muitos;
            }
 
         }
         $size = "(".$array_post['size'].")";
-        $this->db->simple_query("ALTER TABLE ".$nome_tabela." ADD ".$array_post['field']." ".$array_post['type'].$size);
+        $this->db->simple_query("ALTER TABLE ".$nome_tabela_sigla." ADD ".$array_post['field']." ".$array_post['type'].$size);
 
 	    return $array_post;
     }
@@ -272,6 +278,9 @@ class Campos extends MY_Controller {
         if( $array_post['type'] == 'UM-PARA-MUITOS'){
             $array_post['grid'] = 0;
             $array_post['add_edit'] = 1;
+            $array_post['tab_um_para_muitos'] = $this->nome_tabela_sigla_um_para_muitos;
+            
+            
         }    
 
         if($array_post['label'] == ''){
