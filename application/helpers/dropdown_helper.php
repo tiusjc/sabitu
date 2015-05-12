@@ -23,7 +23,7 @@ function preencher_dropdown($table, $id, $campo, $sigla) {
  				   $items[$data->$id] = $data->$campo;
 		  		}else{
 			  		if( $CI->db->table_exists( $data->sigla ) ){
-						$query_campo  = $CI->db->query("SELECT COUNT(*) AS qtd_campos FROM information_schema.columns WHERE table_schema ='sabitu' AND table_name='".$data->sigla."'");
+						$query_campo  = $CI->db->query("SELECT COUNT(*) AS qtd_campos FROM information_schema.columns WHERE table_schema ='web_sabitu' AND table_name='".$data->sigla."'");
 	        			$campos = $query_campo->row();
 						if( $campos->qtd_campos > 4 ){
 			 			   $items[$data->$id] = $data->$campo;
