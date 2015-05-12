@@ -83,6 +83,7 @@ class form_cadastro extends MY_Controller{
         if( !$form_existe ){
           $this->session->set_flashdata('mensagem',
           '<div class="alert alert-danger">Atenção: O Formulário '. $this->form_sigla. ' ainda não existe!</div>');
+          echo "ok";
           redirect('form_cadastro');
         }
             
