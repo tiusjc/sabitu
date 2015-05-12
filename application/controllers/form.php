@@ -27,7 +27,7 @@ class Form extends MY_Controller {
       
         $this->crud->callback_column('inscricoes',array($this,'count_inscricoes'));
         $this->crud->callback_column('campos',array($this,'count_campos'));
-        $this->crud->callback_column('linhas',array($this,'count_linhas'));
+      //  $this->crud->callback_column('linhas',array($this,'count_linhas'));
 
         $this->crud->callback_after_insert(array($this, 'cria_table'));
         $this->crud->callback_after_update(array($this, 'cria_table'));
