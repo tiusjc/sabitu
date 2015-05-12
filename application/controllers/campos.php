@@ -221,7 +221,7 @@ class Campos extends MY_Controller {
                   $this->qtd_um_para_muitos =   $this->campos_model->getCountField(form_id, $array_post['field']);
                 
                   if( $qtd_um_para_muitos == 0){
-                   $qtd_um_para_muitos = 1;
+                   $qtd_um_para_muitos += 1;
                   }   
                    
                   //CRIA A TABELA DE SIGLA_DETALHES
@@ -275,18 +275,15 @@ class Campos extends MY_Controller {
 
    function before_insert_update( $array_post ) {
     
-        if( $array_post['type'] == 'UM-PARA-MUITOS'){
+        if( $array_post['type'] == 'UM-PARA-MUITOS' ){
             $array_post['grid'] = 0;
             $array_post['add_edit'] = 1;
             $array_post['tab_um_para_muitos'] = $this->nome_tabela_sigla_um_para_muitos;
-            
-            
         }    
 
         if($array_post['label'] == ''){
            $array_post['label'] = $array_post['field'];
         }    
-
 
         return $array_post;
 

@@ -21,7 +21,7 @@ class Campos_model extends CI_Model {
         }
     }
     
-    public function getCountField($form_id,$campo_type = 'UM-PARA-MUITOS'){
+    public function getCountField($form_id, $campo_type = 'UM-PARA-MUITOS'){
         $this->db->where('form_id',$form_id); 
         $this->db->where('type',$campo_type); 
         
