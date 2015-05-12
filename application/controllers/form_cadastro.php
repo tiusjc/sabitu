@@ -32,7 +32,7 @@ class form_cadastro extends MY_Controller{
         $this->crud->unset_read();
       }else{
 
-          if( $this->usuario_model->validarUsuario_nome( $this->usuarios_id ) ){
+          if( $this->usuario_model->validarUsuario_nome( $this->usuario_id ) ){
             
          
               redirect('form_cadastro/form');
