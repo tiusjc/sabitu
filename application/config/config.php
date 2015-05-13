@@ -14,6 +14,8 @@
 | path to your installation.
 */
 
+/*alteração no DEV */
+
 $config['base_url']	= 'http://ict.unifesp.br/sabitu';
 $config['app_name']	= 'SABITU';
 $config['app_version']	= 'beta 1.0.0';
