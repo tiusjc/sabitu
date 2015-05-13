@@ -148,7 +148,7 @@ class Campos extends MY_Controller {
           $this->crud->unset_edit();
 
           if( $this->form_id ){
-            // $this->crud->unset_delete();
+            $this->crud->unset_delete();
           }
 
           $this->crud->callback_before_insert(array($this, 'before_insert_update'));
