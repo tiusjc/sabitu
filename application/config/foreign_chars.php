@@ -61,4 +61,8 @@ $foreign_characters = array(
 );
 
 /* End of file foreign_chars.php */
+<<<<<<< HEAD
 /* Location: ./application/config/foreign_chars.php */
+=======
+/* Location: ./application/config/foreign_chars.php */
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79

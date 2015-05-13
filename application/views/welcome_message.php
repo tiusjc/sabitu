@@ -47,7 +47,11 @@
 	#body{
 		margin: 0 15px 0 15px;
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
 	p.footer{
 		text-align: right;
 		font-size: 11px;
@@ -56,7 +60,11 @@
 		padding: 0 10px 0 10px;
 		margin: 20px 0 0 0;
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
 	#container{
 		margin: 10px;
 		border: 1px solid #D0D0D0;
@@ -85,4 +93,8 @@
 </div>
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79

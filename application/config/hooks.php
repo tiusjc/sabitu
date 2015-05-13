@@ -13,4 +13,8 @@
 
 
 /* End of file hooks.php */
+<<<<<<< HEAD
 /* Location: ./application/config/hooks.php */
+=======
+/* Location: ./application/config/hooks.php */
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79

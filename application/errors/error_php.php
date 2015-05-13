@@ -7,4 +7,8 @@
 <p>Filename: <?php echo $filepath; ?></p>
 <p>Line Number: <?php echo $line; ?></p>
 
+<<<<<<< HEAD
 </div>
+=======
+</div>
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
