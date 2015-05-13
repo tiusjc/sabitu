@@ -19,7 +19,7 @@ class Campos extends MY_Controller {
       $this->load->dbforge();
       $this->output->enable_profiler(TRUE);
       $this->qtd_um_para_muitxos = 0;
-
+/*uuuuuu*/
     }
 
     public function index(){
