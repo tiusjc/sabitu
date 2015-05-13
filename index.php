@@ -16,7 +16,7 @@
  *     production
  *
  * NOTE: If you change these, also change the error_reporting() code below
- * teste no cobaia
+ * teste local para dev 
  */
 	define('ENVIRONMENT', 'development');
 /*
