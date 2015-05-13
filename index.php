@@ -16,7 +16,7 @@
  *     production
  *
  * NOTE: If you change these, also change the error_reporting() code below
- * teste local para dev 
+ * teste local para dev novo 1:43
  */
 	define('ENVIRONMENT', 'development');
 /*
