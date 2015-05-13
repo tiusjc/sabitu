@@ -19,6 +19,7 @@ class Campos extends MY_Controller {
       $this->load->dbforge();
       $this->output->enable_profiler(TRUE);
       $this->qtd_um_para_muitxos = 0;
+/*uuuuudddu*/
     }
 
     public function index(){
@@ -26,7 +27,7 @@ class Campos extends MY_Controller {
     try {
           if(!$this->form_id){
             $this->session->set_flashdata('mensagem',
-            '<div class="alert alert-danger">aAtenção: Selecione um Formulário '. $this->form_sigla. ' para criar campos!</div>');
+            '<div class="alert alert-danger">Atenção: Selecione um Formulário '. $this->form_sigla. ' para criar campos!</div>');
             redirect('form_cadastro');
           }
 

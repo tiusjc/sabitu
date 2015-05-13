@@ -4,7 +4,11 @@
 | Enable/Disable Migrations
 |--------------------------------------------------------------------------
 |
+<<<<<<< HEAD
+| Migrations are disabled by default but should be enabled 
+=======
 | Migrations are disabled by default but should be enabled
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
 | whenever you intend to do a schema migration.
 |
 */
@@ -38,4 +42,8 @@ $config['migration_path'] = APPPATH . 'migrations/';
 
 
 /* End of file migration.php */
+<<<<<<< HEAD
 /* Location: ./application/config/migration.php */
+=======
+/* Location: ./application/config/migration.php */
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79

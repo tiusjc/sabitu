@@ -19,28 +19,50 @@
 	function unique($str = '', $field = '')
 	{
 		$CI =& get_instance();
+<<<<<<< HEAD
+		
+		$res = explode('.', $field, 3);
+		
+=======
 
 		$res = explode('.', $field, 3);
 
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
 		$table	= $res[0];
 		$column	= $res[1];
 
 		$CI->form_validation->set_message('unique', 'O %s informado não está disponível.');
+<<<<<<< HEAD
+		
+		
+		$CI->db->select('COUNT(*) as total');
+		$CI->db->where($column, $str);
+		
+=======
 
 
 		$CI->db->select('COUNT(*) as total');
 		$CI->db->where($column, $str);
 
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
 		if( isset($res[2]) )
 		{
 			$res2 = explode(':', $res[2], 2);
 			$ignore_value = $res2[0];
+<<<<<<< HEAD
+			
+=======
 
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
 			if( isset($res2[1]) )
 				$ignore_field = $res2[1];
 			else
 				$ignore_field = 'id';
+<<<<<<< HEAD
+			
+=======
 
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
 			$CI->db->where($ignore_field . ' !=', $ignore_value);
 		}
 
@@ -79,7 +101,11 @@
     function valid_cpf($cpf)
     {
         $CI =& get_instance();
+<<<<<<< HEAD
+        
+=======
 
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
         $CI->form_validation->set_message('valid_cpf', 'O %s informado não é válido.');
 
         $cpf = preg_replace('/[^0-9]/','',$cpf);
@@ -104,7 +130,11 @@
             $summod11 = $sum % 11;
             $digit[$j-1] = $summod11 < 2 ? 0 : 11 - $summod11;
         }
+<<<<<<< HEAD
+        
+=======
 
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
         return $digit[9] == ((int)$cpf[9]) && $digit[10] == ((int)$cpf[10]);
     }
 
@@ -112,7 +142,11 @@
      * valid_date
      *
      * valida data no pradrao brasileiro
+<<<<<<< HEAD
+     * 
+=======
      *
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
      * @access	public
      * @param	string
      * @return	bool
@@ -131,7 +165,11 @@
      * valid_cep
      *
      * Verifica se CEP é válido
+<<<<<<< HEAD
+     * 
+=======
      *
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
      * @access	public
      * @param	string
      * @return	bool
@@ -190,4 +228,8 @@
             return TRUE;
         else
             return FALSE;
+<<<<<<< HEAD
     }
+=======
+    }
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
