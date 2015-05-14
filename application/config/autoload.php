@@ -52,11 +52,7 @@ $autoload['packages'] = array();
 |	$autoload['libraries'] = array('database', 'session', 'xmlrpc');
 */
 
-<<<<<<< HEAD
 $autoload['libraries'] = array('database','grocery_CRUD','session','form_validation');
-=======
-$autoload['libraries'] = array('database','grocery_CRUD','session');
->>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198
 
 
 /*
@@ -114,3 +110,7 @@ $autoload['language'] = array();
 */
 
 $autoload['model'] = array();
+
+
+/* End of file autoload.php */
+/* Location: ./application/config/autoload.php */

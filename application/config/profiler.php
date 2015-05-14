@@ -10,3 +10,8 @@
 |	http://codeigniter.com/user_guide/general/profiling.html
 |
 */
+
+
+
+/* End of file profiler.php */
+/* Location: ./application/config/profiler.php */

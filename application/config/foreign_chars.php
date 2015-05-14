@@ -59,3 +59,6 @@ $foreign_characters = array(
 	'/Œ/' => 'OE',
 	'/ƒ/' => 'f'
 );
+
+/* End of file foreign_chars.php */
+/* Location: ./application/config/foreign_chars.php */

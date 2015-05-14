@@ -25,8 +25,8 @@ class Form extends MY_Controller {
       
         $this->crud->set_table( $tabela );
       
-        $this->crud->callback_column('inscricoes',array($this,'count_inscricoes'));
-        $this->crud->callback_column('campos',array($this,'count_campos'));
+      //  $this->crud->callback_column('inscricoes',array($this,'count_inscricoes'));
+      //  $this->crud->callback_column('campos',array($this,'count_campos'));
       //  $this->crud->callback_column('linhas',array($this,'count_linhas'));
 
         $this->crud->callback_after_insert(array($this, 'cria_table'));
@@ -81,7 +81,7 @@ class Form extends MY_Controller {
     public function count_campos($value, $row)
     {
       if($this->db->table_exists($row->sigla)){
-        $query_campo  = $this->db->query('SELECT COUNT(*) AS qtd_campos FROM information_schema.columns WHERE table_schema ="web_sabitu" AND table_name ="'.$row->sigla.'"');
+        $query_campo  = $this->db->query('SELECT COUNT(*) AS qtd_campos FROM information_schema.columns WHERE table_schema ="sabitu" AND table_name ="'.$row->sigla.'"');
         $campos = $query_campo->row();
         return $campos->qtd_campos - 4;
       }else{
@@ -144,7 +144,7 @@ class Form extends MY_Controller {
   function cria_table( $array_post ){
 
 
-        if (!$this->db->table_exists( 'logs' ) ){
+        if (!$this->db->table_exists( 'user_logs' ) ){
 
             $fields = array(
                         
@@ -154,7 +154,7 @@ class Form extends MY_Controller {
                          'auto_increment'       => TRUE
                          ),
 
-                         'usuario_id'         => array(
+                         'usuarios_id'         => array(
                          'type'                 => 'INT',
                          'constraint'           => 11 
                          ),
@@ -193,7 +193,7 @@ class Form extends MY_Controller {
                       'auto_increment' => TRUE
                        ),
 
-                      'usuario_id'        => array(
+                      'usuarios_id'        => array(
                       'type'           => 'INT',
                       'constraint'     => 11 
                        ),

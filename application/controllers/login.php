@@ -39,11 +39,11 @@
                 $this->load->view( 'login_view', $data );
             }else{
           
-                $usuario_id = $this->usuarios_model->validarUsuario_id();
+                $usuarios_id = $this->usuarios_model->validarUsuario_id();
         
-                if ( $usuario_id ){
+                if ( $usuarios_id ){
                     
-                    $adm   = $this->adm_model->validate_adm( $usuario_id );
+                    $adm   = $this->adm_model->validate_adm( $usuarios_id );
                     
                     $form_id      = $this->input->post('form_id');
                     $form_nome    = $this->input->post('form_nome');
@@ -52,7 +52,7 @@
                     $email        = $this->input->post('email');
 
                     $this->session->set_userdata( 'adm', $adm );
-                    $this->session->set_userdata( 'usuario_id' , $usuario_id );
+                    $this->session->set_userdata( 'usuarios_id' , $usuarios_id );
                     $this->session->set_userdata( 'email'       , $email );
                     $this->session->set_userdata( 'form_id'     , $form_id );
                     $this->session->set_userdata( 'form_nome'   , $form_nome );
@@ -70,11 +70,11 @@
 
                         if( $form_id ){ 
                         
-                            $form_cadastro_id = $this->form_cadastro_model->validarForm_cadastro_id($usuario_id, $form_id, $form_sigla);
+                            $form_cadastro_id = $this->form_cadastro_model->validarForm_cadastro_id($usuarios_id, $form_id, $form_sigla);
                             
                             $this->session->set_userdata( 'form_cadastro_id', $form_cadastro_id );
                             
-                            if( $this->usuarios_model->validarUsuario_nome( $usuario_id ) ){
+                            if( $this->usuarios_model->validarUsuario_nome( $usuarios_id ) ){
                                   
                                 if( $form_cadastro_id ){ 
                                     

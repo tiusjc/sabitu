@@ -44,3 +44,8 @@ $route['404_override'] = '';
 $route["processos"] = 'processos/index/edit/$1';
 
 //$route["view/(.*)"] = 'webpages/view/$1';
+
+
+
+/* End of file routes.php */
+/* Location: ./application/config/routes.php */
