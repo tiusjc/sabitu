@@ -16,47 +16,43 @@
 // ------------------------------------------------------------------------
 
 /**
- * CodeIgniter Email Helpers
+ * CodeIgniter Language Helpers
  *
  * @package		CodeIgniter
  * @subpackage	Helpers
  * @category	Helpers
  * @author		ExpressionEngine Dev Team
- * @link		http://codeigniter.com/user_guide/helpers/email_helper.html
+ * @link		http://codeigniter.com/user_guide/helpers/language_helper.html
  */
 
 // ------------------------------------------------------------------------
 
 /**
- * Validate email address
+ * Lang
+ *
+ * Fetches a language variable and optionally outputs a form label
  *
  * @access	public
- * @return	bool
+ * @param	string	the language line
+ * @param	string	the id of the form element
+ * @return	string
  */
-if ( ! function_exists('valid_email'))
+if ( ! function_exists('lang'))
 {
-	function valid_email($address)
+	function lang($line, $id = '')
 	{
-		return ( ! preg_match("/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/ix", $address)) ? FALSE : TRUE;
+		$CI =& get_instance();
+		$line = $CI->lang->line($line);
+
+		if ($id != '')
+		{
+			$line = '<label for="'.$id.'">'.$line."</label>";
+		}
+
+		return $line;
 	}
 }
 
 // ------------------------------------------------------------------------
-
-/**
- * Send an email
- *
- * @access	public
- * @return	bool
- */
-if ( ! function_exists('send_email'))
-{
-	function send_email($recipient, $subject = 'Test email', $message = 'Hello World')
-	{
-		return mail($recipient, $subject, $message);
-	}
-}
-
-
-/* End of file email_helper.php */
-/* Location: ./system/helpers/email_helper.php */
+/* End of file language_helper.php */
+/* Location: ./system/helpers/language_helper.php */
