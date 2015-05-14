@@ -15,6 +15,9 @@
 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> f7c1646f63961cba16d65e2be83725f72e052a47
 $config['base_url']	= 'http://lab.unifesp.br/sabitu';
 $config['app_name']	= 'SABITU';
 =======
