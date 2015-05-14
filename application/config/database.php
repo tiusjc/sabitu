@@ -48,10 +48,23 @@
 $active_group = 'default';
 $active_record = TRUE;
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198
 $db['default']['hostname'] = 'localhost';
 $db['default']['username'] = 'inscricao';
 $db['default']['password'] = 'inscricao';
 $db['default']['database'] = 'sabitu';
+<<<<<<< HEAD
+=======
+=======
+$db['default']['hostname'] = 'db.epm.br';
+$db['default']['username'] = 'websabitu';
+$db['default']['password'] = 'Utibasbew2015';
+$db['default']['database'] = 'web_sabitu';
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
+>>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
@@ -66,4 +79,12 @@ $db['default']['stricton'] = FALSE;
 
 
 /* End of file database.php */
+<<<<<<< HEAD
 /* Location: ./application/config/database.php */
+=======
+<<<<<<< HEAD
+/* Location: ./application/config/database.php */
+=======
+/* Location: ./application/config/database.php */
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
+>>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198

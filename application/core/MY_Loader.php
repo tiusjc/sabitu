@@ -294,4 +294,8 @@ class MY_Loader extends CI_Loader {
 }
 
 /* End of file  user  */
+<<<<<<< HEAD
 /* Location:  file_path */
+=======
+/* Location:  file_path */
+>>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198

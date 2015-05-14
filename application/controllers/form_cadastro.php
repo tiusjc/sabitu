@@ -8,7 +8,7 @@ class form_cadastro extends MY_Controller{
       parent::__construct();
       
       $this->load->model('form_cadastro_model');
-      $this->load->model('usuario_model');
+      $this->load->model('usuarios_model');
       $this->load->model('form_model');
       $this->session->set_userdata( 'check_id', $this->form_cadastro_id );
       $this->output->enable_profiler(TRUE);
@@ -32,7 +32,7 @@ class form_cadastro extends MY_Controller{
         $this->crud->unset_read();
       }else{
 
-          if( $this->usuario_model->validarUsuario_nome( $this->usuarios_id ) ){
+          if( $this->usuarios_model->validarUsuario_nome( $this->usuario_id ) ){
             
          
               redirect('form_cadastro/form');
@@ -72,7 +72,7 @@ class form_cadastro extends MY_Controller{
 
               $this->crud->unset_add();            
           }
-          $this->crud->where( 'usuarios_id', $this->usuarios_id  );
+          $this->crud->where( 'usuario_id', $this->usuario_id  );
           $this->crud->where( 'form_id'   , $this->form_id  );
         }
  
@@ -83,6 +83,7 @@ class form_cadastro extends MY_Controller{
         if( !$form_existe ){
           $this->session->set_flashdata('mensagem',
           '<div class="alert alert-danger">Atenção: O Formulário '. $this->form_sigla. ' ainda não existe!</div>');
+          echo "ok";
           redirect('form_cadastro');
         }
             
@@ -110,7 +111,7 @@ class form_cadastro extends MY_Controller{
        
         $this->crud->set_rules( $this->form_cadastro_model->getFieldsLabelRules($this->form_id,"field,label,rules", 0,0,$tabela_campos) );
         
-        $this->crud->field_type( 'usuarios_id'   , 'hidden', $this->usuarios_id );
+        $this->crud->field_type( 'usuario_id'   , 'hidden', $this->usuario_id );
         $this->crud->field_type( 'form_id'      , 'hidden', $this->form_id );
         $this->crud->field_type( 'data_cadastro', 'hidden');
         
@@ -138,7 +139,7 @@ class form_cadastro extends MY_Controller{
         
         $this->crud->callback_after_delete(array($this, 'after_delete'));
 
-        $this->crud->set_rules('usuarios_id','form_cadastro','callback_before_insert');
+        $this->crud->set_rules('usuario_id','form_cadastro','callback_before_insert');
       
         $this->load->vars($this->crud->render());
         $this->load->view( 'gerenciar' );
@@ -150,16 +151,16 @@ class form_cadastro extends MY_Controller{
 
     private function set_rules(){
 
-      $this->crud->set_rules('usuarios_id','usuario','required');
+      $this->crud->set_rules('usuario_id','usuario','required');
       $this->crud->set_rules('form_id','Formulário','required');
       if ( $this->crud->getState() == 'insert' || $this->crud->getState() == 'insert_validation'){
-           $this->crud->set_rules('usuarios_id','usuarios','callback_unique_form_cadastro['.$this->input->post('form_id').']');
+           $this->crud->set_rules('usuario_id','usuarios','callback_unique_form_cadastro['.$this->input->post('form_id').']');
       }
       $this->crud->set_rules('form_id','Formulários','callback_checar_campos['.$this->input->post('form_id').']');
     }
 
     public function unique_form_cadastro( $pk1, $pk2 ){
-      $this->db->where('usuarios_id', $pk1);
+      $this->db->where('usuario_id', $pk1);
       $this->db->where('form_id'   , $pk2);
       if($this->db->count_all_results($this->form_sigla) != 0) {
         $this->form_validation->set_message('unique_form_cadastro','Já existe uma inscrição registrada para o usuario.');
@@ -183,7 +184,7 @@ class form_cadastro extends MY_Controller{
 
     public function before_insert_update( $array_post ) {
   
-      $array_post['usuarios_id']    = $this->usuarios_id;
+      $array_post['usuario_id']    = $this->usuario_id;
       $array_post['form_id']       = $this->form_id;
       $array_post['data_cadastro'] = date('Y-m-d H:i:s');
       return $array_post;
@@ -193,20 +194,20 @@ class form_cadastro extends MY_Controller{
     public function after_insert( $post_array, $primary_key ) {
         $this->session->set_userdata( 'form_cadastro_id', $primary_key );
         $this->form_cadastro_id = $this->session->set_userdata( 'form_cadastro_id', $primary_key );
-        return $this->db->insert('user_logs', array('usuarios_id' => $this->usuarios_id,'form_id' => $primary_key,'action'=>'insert', 'data' => date('Y-m-d H:i:s')));
+        return $this->db->insert('user_logs', array('usuario_id' => $this->usuario_id,'form_id' => $primary_key,'action'=>'insert', 'data' => date('Y-m-d H:i:s')));
     }
 
     public function after_update( $post_array, $primary_key ) {
         $this->session->set_userdata( 'form_cadastro_id', $primary_key );
         $this->form_cadastro_id = $this->session->set_userdata( 'form_cadastro_id', $primary_key );
-        return $this->db->insert('user_logs', array('usuarios_id' => $this->usuarios_id,'form_id' => $primary_key,'action'=>'update', 'data' => date('Y-m-d H:i:s')));
+        return $this->db->insert('logs', array('usuario_id' => $this->usuario_id,'form_id' => $primary_key,'action'=>'update', 'data' => date('Y-m-d H:i:s')));
     }
 
 
     public function after_delete( $primary_key ) {
         $this->session->set_userdata( 'form_cadastro_id', 0 );
         $this->form_cadastro_id = 0;
-        return $this->db->insert('user_logs', array('usuarios_id' => $this->usuarios_id,'form_id' => $primary_key,'action'=>'delete', 'data' => date('Y-m-d H:i:s')));
+        return $this->db->insert('logs', array('usuario_id' => $this->usuario_id,'form_id' => $primary_key,'action'=>'delete', 'data' => date('Y-m-d H:i:s')));
     }
 
   }
