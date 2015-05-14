@@ -32,4 +32,4 @@
 	$arrConfig['SABITU-DEV'] = array(
 		'repository' => 'sabitu',
         'branch'     => 'dev',
-    	'execute'    => array('cd /var/www/sabitu-dev; git reset --hard 2>&1; git clean -f -d 2>&1;git pull producao dev 2>&1'));
+    	'execute'    => array('ssh -t tiusjc@lab.unifesp.br -p 2244 "/var/www/exec_git_sabitu"'));
