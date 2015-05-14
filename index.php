@@ -67,16 +67,6 @@ $system_path = 'system';
  * can also be renamed or relocated anywhere on your server.  If
  * you do, use a full server path. For more info please see the user guide:
  * http://codeigniter.com/user_guide/general/managing_apps.html
-<<<<<<< HEAD
- *
-=======
-<<<<<<< HEAD
- *
-=======
- **
->>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
->>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198
- * NO TRAILING SLASH!
  *
  */
 	$application_folder = 'application';
