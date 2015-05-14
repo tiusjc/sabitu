@@ -23,7 +23,7 @@ $config['app_name']	= 'SABITU';
 =======
 <<<<<<< HEAD
 <<<<<<< HEAD
-$config['base_url']	= 'http://localhost/sabitu';
+$config['base_url']	= 'http://ict.unifesp.br/sabitu';
 =======
 =======
 /*alteração no DEV */
