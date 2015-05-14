@@ -41,7 +41,7 @@ function __construct($check_login = TRUE){
         	}
       else{
           $this->check_id         = $this->session->userdata('check_id'    );  
-      	  $this->usuarios_id      = $this->session->userdata('usuarios_id' );
+      	  $this->usuario_id      = $this->session->userdata('usuario_id' );
           $this->email            = $this->session->userdata('email'       );
           $this->adm              = $this->session->userdata('adm'         );
           $this->form_id          = $this->session->userdata('form_id'     );

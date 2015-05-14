@@ -9,7 +9,7 @@ if (!defined('BASEPATH'))
       parent::__construct();
       $this->load->model('form_cadastro_model');
       
-      $this->session->set_userdata( 'check_id', $this->usuarios_id );
+      $this->session->set_userdata( 'check_id', $this->usuario_id );
       $this->output->enable_profiler(TRUE);
     }
     
@@ -19,7 +19,7 @@ if (!defined('BASEPATH'))
       $this->crud->set_table('usuarios');
 
       if (!$this->adm){
-         $this->crud->where('id',$this->usuarios_id);
+         $this->crud->where('id',$this->usuario_id);
          $this->crud->unset_add();
          $this->crud->unset_print();
          $this->crud->unset_export();
@@ -56,7 +56,7 @@ if (!defined('BASEPATH'))
     public function after_delete( $primary_key ) {
        $this->session->set_userdata( 'inscricao_id', 0 );
        $this->inscricao_id = 0;
-       return $this->db->insert('user_logs', array('usuarios_id' => $this->usuarios_id,'form_id' => $primary_key,'action'=>'delete', 'data' => date('Y-m-d H:i:s')));
+       return $this->db->insert('user_logs', array('usuario_id' => $this->usuario_id,'form_id' => $primary_key,'action'=>'delete', 'data' => date('Y-m-d H:i:s')));
     }
   }
 

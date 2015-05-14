@@ -22,8 +22,8 @@ class usuarios_model extends CI_Model {
     }
     
 
-	public function validarUsuario_nome( $usuarios_id ){    
-	    $this->db->where('id', $usuarios_id);
+	public function validarUsuario_nome( $usuario_id ){    
+	    $this->db->where('id', $usuario_id);
 	    $this->db->select('nome');		    
 	    $busca = $this->db->get('usuarios');
 	    $row   = $busca->row();

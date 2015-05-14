@@ -55,7 +55,7 @@ class Form extends MY_Controller {
 
         $this->session->set_userdata( 'form_id', 0 );
         $this->form_id = 0;
-        return $this->db->insert('user_logs', array('usuarios_id' => $this->usuarios_id,'form_id' => $primary_key,'action'=>'delete', 'data' => date('Y-m-d H:i:s')));
+        return $this->db->insert('user_logs', array('usuario_id' => $this->usuario_id,'form_id' => $primary_key,'action'=>'delete', 'data' => date('Y-m-d H:i:s')));
         
       }
 
@@ -154,7 +154,7 @@ class Form extends MY_Controller {
                          'auto_increment'       => TRUE
                          ),
 
-                         'usuarios_id'         => array(
+                         'usuario_id'         => array(
                          'type'                 => 'INT',
                          'constraint'           => 11 
                          ),
@@ -193,7 +193,7 @@ class Form extends MY_Controller {
                       'auto_increment' => TRUE
                        ),
 
-                      'usuarios_id'        => array(
+                      'usuario_id'        => array(
                       'type'           => 'INT',
                       'constraint'     => 11 
                        ),

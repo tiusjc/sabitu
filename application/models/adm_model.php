@@ -9,7 +9,7 @@ class Adm_model extends CI_Model {
     }
 
     function validate_adm( $id ) {
-        $this->db->where('usuarios_id', $id ); 
+        $this->db->where('usuario_id', $id ); 
 
         $query = $this->db->get('adm'); 
         $row = $query->row();
