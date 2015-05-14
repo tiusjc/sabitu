@@ -16,7 +16,11 @@
  *     production
  *
  * NOTE: If you change these, also change the error_reporting() code below
+<<<<<<< HEAD
  *
+=======
+ * teste local para dev novo 1:43
+>>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198
  */
 	define('ENVIRONMENT', 'development');
 /*
@@ -35,7 +39,11 @@ if (defined('ENVIRONMENT'))
 		case 'development':
 			error_reporting(E_ALL);
 		break;
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198
 		case 'testing':
 		case 'production':
 			error_reporting(0);
@@ -55,9 +63,19 @@ if (defined('ENVIRONMENT'))
  * Include the path if the folder is not in the same  directory
  * as this file.
  *
+<<<<<<< HEAD
+ */
+	$system_path = '../base_ci/system';
+=======
+<<<<<<< HEAD
+ */
+	$system_path = '../base_ci/system';
+=======
  **/
 
 	$system_path = 'system';
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
+>>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198
 
 /*
  *---------------------------------------------------------------
@@ -69,7 +87,15 @@ if (defined('ENVIRONMENT'))
  * can also be renamed or relocated anywhere on your server.  If
  * you do, use a full server path. For more info please see the user guide:
  * http://codeigniter.com/user_guide/general/managing_apps.html
+<<<<<<< HEAD
+ *
+=======
+<<<<<<< HEAD
+ *
+=======
  **
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
+>>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198
  * NO TRAILING SLASH!
  *
  */
@@ -203,4 +229,12 @@ if (defined('ENVIRONMENT'))
 require_once BASEPATH.'core/CodeIgniter.php';
 
 /* End of file index.php */
+<<<<<<< HEAD
 /* Location: ./index.php */
+=======
+<<<<<<< HEAD
+/* Location: ./index.php */
+=======
+/* Location: ./index.php */
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
+>>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198

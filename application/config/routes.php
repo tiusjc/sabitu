@@ -48,4 +48,12 @@ $route["processos"] = 'processos/index/edit/$1';
 
 
 /* End of file routes.php */
+<<<<<<< HEAD
 /* Location: ./application/config/routes.php */
+=======
+<<<<<<< HEAD
+/* Location: ./application/config/routes.php */
+=======
+/* Location: ./application/config/routes.php */
+>>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
+>>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198

@@ -235,4 +235,8 @@ class MY_Output extends CI_Output {
     {
        $this->_canonical = $url;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198

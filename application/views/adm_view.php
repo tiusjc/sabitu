@@ -6,5 +6,6 @@
       <li><a href="<?php echo site_url('linhas');?>">Linhas de Pesquisa</a></li>
       <li><a href="<?php echo site_url('campos');?>">Campos (Processo Seletivo)</a></li>
       <li><a href="<?php echo site_url('relatorios');?>">Relatórios (Inscritos)</a></li>
+			<li><a href="<?php echo site_url('relatorios');?>">Relatórios2 (Inscritos2)</a></li>
     </ul>
 </li>
