@@ -32,7 +32,7 @@ $config['base_url']	= 'http://localhost/sabitu';
 $config['base_url']	= 'http://ict.unifesp.br/sabitu';
 >>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
 $config['app_name']	= 'SABITU Cobaia';
-$config['app_version']	= 'beta 1.0.0';
+$config['app_vers']	= 'beta 1.0.0';
 >>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198
 $config['app_desc']	= 'Gerador de Formulários';
 
