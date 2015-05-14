@@ -35,15 +35,3 @@ define('FOPEN_WRITE_CREATE',					'ab');
 define('FOPEN_READ_WRITE_CREATE',				'a+b');
 define('FOPEN_WRITE_CREATE_STRICT',				'xb');
 define('FOPEN_READ_WRITE_CREATE_STRICT',		'x+b');
-
-
-/* End of file constants.php */
-<<<<<<< HEAD
-/* Location: ./application/config/constants.php */
-=======
-<<<<<<< HEAD
-/* Location: ./application/config/constants.php */
-=======
-/* Location: ./application/config/constants.php */
->>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
->>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198
