@@ -29,7 +29,7 @@
 
 	$boolDebugLogging = TRUE;
 
-	$arrConfig['SABITU-DEV'] = array(
+	$arrConfig['SABITU'] = array(
 		'repository' => 'sabitu',
         'branch'     => 'dev',
     	'execute'    => array('ssh -t tiusjc@lab.unifesp.br -p 2244 "/var/www/exec_git_sabitu"'));
