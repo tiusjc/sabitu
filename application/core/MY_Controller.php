@@ -153,5 +153,3 @@ function __construct($check_login = TRUE){
 
 	}
 ?>
->>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
->>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198

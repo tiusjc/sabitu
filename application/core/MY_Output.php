@@ -236,5 +236,3 @@ class MY_Output extends CI_Output {
        $this->_canonical = $url;
     }
 }
-
-}
