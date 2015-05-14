@@ -10,14 +10,3 @@ $_doctypes = array(
 					'html4-trans'	=> '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">',
 					'html4-frame'	=> '<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">'
 					);
-
-/* End of file doctypes.php */
-<<<<<<< HEAD
-/* Location: ./application/config/doctypes.php */
-=======
-<<<<<<< HEAD
-/* Location: ./application/config/doctypes.php */
-=======
-/* Location: ./application/config/doctypes.php */
->>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
->>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198

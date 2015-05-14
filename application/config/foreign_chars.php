@@ -59,14 +59,3 @@ $foreign_characters = array(
 	'/Œ/' => 'OE',
 	'/ƒ/' => 'f'
 );
-
-/* End of file foreign_chars.php */
-<<<<<<< HEAD
-/* Location: ./application/config/foreign_chars.php */
-=======
-<<<<<<< HEAD
-/* Location: ./application/config/foreign_chars.php */
-=======
-/* Location: ./application/config/foreign_chars.php */
->>>>>>> a95a825cf8ba5aba53188ec5d72fd9e769dc4e79
->>>>>>> db415756a67c627fbc1259b8e7ffba3b4383c198
