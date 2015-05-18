@@ -25,6 +25,7 @@
 	 *		'branch' => '*'
 	 *		'username' => '*'
 	 *		'execute' => array()
+	*
 	 */
 
 	$boolDebugLogging = TRUE;
