@@ -31,5 +31,5 @@
 
 	$arrConfig['SABITU-DEV'] = array(
 		'repository' => 'sabitu',
-                'branch'     => 'dev', 
-                'execute'    => array('cd /var/www/sabitu-dev; git reset --hard 2>&1;git clean -f -d 2>&1;git pull producao dev'));       
+                'branch'     => 'dev',
+                'execute'    => array('cd /var/www/sabitu-dev; git reset --hard 2>&1;git clean -f -d 2>&1;git pull producao dev'));
