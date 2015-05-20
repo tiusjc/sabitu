@@ -15,7 +15,7 @@
 */
 
 $config['base_url']	= 'http://ict.unifesp.br/sabitu';
-$config['app_name']	= 'SABITUxssssxx';
+$config['app_name']	= 'SABITUxssssssxx';
 $config['app_vers']	= 'Beta 1.0.0';
 $config['app_desc']	= 'Gerador de Formulários';
 
