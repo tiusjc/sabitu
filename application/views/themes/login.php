@@ -34,7 +34,7 @@
 
 		<!-- jQuery -->
 		<script src="<?php echo base_url().'assets/grocery_crud/js/jquery-1.10.2.min.js'; ?>"></script>
-		
+
 		<!-- BOOTSTRAP -->
 		<link rel="stylesheet" href="<?php echo base_url().'assets/bootstrap/css/bootstrap.min.css';?>">
 
@@ -42,9 +42,9 @@
 	 	<script src="<?php echo base_url().'assets/myjs.js'; ?>"></script>
 
 		<!-- CSS-TEMA-UNIFESP -->
-		<link rel="stylesheet" href="<?php echo base_url().'assets/bootstrap/css/min.css';?>">	
-				
-		<!-- jQuery -->	
+		<link rel="stylesheet" href="<?php echo base_url().'assets/bootstrap/css/min.css';?>">
+
+		<!-- jQuery -->
 		<script src="<?php echo 'assets/inputmask/js/jquery.inputmask.js';?>" type="text/javascript"></script>
 		<script src="<?php echo 'assets/inputmask/js/jquery.inputmask.extensions.js';?>" type="text/javascript"></script>
 		<script src="<?php echo 'assets/inputmask/js/jquery.inputmask.regex.extensions.js';?>" type="text/javascript"></script>
@@ -60,42 +60,43 @@
 	  		<div class="col-md-10 col-lg-offset-1">
   	    		<div class="row">
 		  	    	<div class="header">
-						<div class="panel-heading">	        
-			        		<div class="panel-title">        
+						<div class="panel-heading">
+			        		<div class="panel-title">
 			        		    <div class="row">
 				        			<div class="col-md-3">
 						  				<img alt="Unifesp" src="<?php echo base_url('assets/logo.png'); ?>" />
-						  			</div> 
+						  			</div>
 							        <div class="col-md-9">
 							        	<h3><?php echo $this->config->item('app_name');?></h3>
+							        	<h3><?php echo $this->config->item('app_vers');?></h3>
 							        	<h4><?php echo $this->config->item('app_desc');?></h4>
 							        	<h4>Campus São José dos Campos</h4>
 							        </div>
 						        </div>
 			        		</div>
-						</div> 
-				   	</div> 
+						</div>
+				   	</div>
 					<div><?php echo $this->session->flashdata("mensagem");?></div>
 				</div>
 				<!-- CONTEÚDO -->
     			<div class="row">
-    				<div class="panel-body">	   
+    				<div class="panel-body">
 	    				<?php echo $output;?>
-	    			</div>	
+	    			</div>
 	    		</div>
 	    		<!-- RODAPÉ -->
     			<div class="row">
 					<div class="panel-body">
 						<div class="alert alert-info" role="alert">
-							<?php 
+							<?php
 							echo '<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Dúvidas/Informações:<br/>';
-	      					echo 'Sobre o processo seletivo: pos.sjc@unifesp.br<br/>';	  	  
+	      					echo 'Sobre o processo seletivo: pos.sjc@unifesp.br<br/>';
 	      					echo 'Sobre uso do sistema: suporte.sjc@unifesp.br';
 	      					?>
 	  					</div>
 					</div>
 	   			</div>
 	    	</div>
-	    </div> 
+	    </div>
 	</body>
 </html>
