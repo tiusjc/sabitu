@@ -67,8 +67,7 @@
 						  				<img alt="Unifesp" src="<?php echo base_url('assets/logo.png'); ?>" />
 						  			</div>
 							        <div class="col-md-9">
-							        	<h3><?php echo $this->config->item('app_name');?></h3>
-							        	<h3><?php echo $this->config->item('app_vers');?></h3>
+							        	<h3><?php echo $this->config->item('app_name').' '.$this->config->item('app_vers');?></h3>
 							        	<h4><?php echo $this->config->item('app_desc');?></h4>
 							        	<h4>Campus São José dos Campos</h4>
 							        </div>
