@@ -48,10 +48,10 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'db.epm.br';
-$db['default']['username'] = 'websabitu';
-$db['default']['password'] = 'Utibasbew2015';
-$db['default']['database'] = 'web_sabitu';
+$db['default']['hostname'] = 'lab.unifesp.br';
+$db['default']['username'] = 'inscricao';
+$db['default']['password'] = 'inscricao';
+$db['default']['database'] = 'sabitu';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
 $db['default']['pconnect'] = TRUE;
