@@ -16,12 +16,11 @@
 
 while read oldrev newrev refname
 do
-    branch=$(git rev-parse --symbolic --abbrev-ref $refname)
-    if [ "master" == "$branch" ]; then
+    if [ "master" == "$refname" ]; then
         echo "master" > master.txt
     fi
   
-    if [ "dev" == "$branch"  ]; then 
+    if [ "dev" == "$refname"  ]; then 
        echo "dev" > dev.txt
     fi
 done
