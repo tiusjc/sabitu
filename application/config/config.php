@@ -12,6 +12,7 @@
 |
 | If this is not set then CodeIgniter will guess the protocol, domain and
 | path to your installation.
+|
 */
 
 $config['base_url']	= 'http://200.133.202.156/sabitu';
