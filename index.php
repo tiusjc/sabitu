@@ -15,7 +15,7 @@
  *     testing
  *     production
  *
- * NOTE: If you change these, also change the error_reporting() code below
+ * NOTE: If you change  xthese, also change the error_reporting() code below
  *
  */
 	define('ENVIRONMENT', 'development');

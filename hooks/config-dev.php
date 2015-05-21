@@ -25,11 +25,17 @@
 	 *		'branch' => '*'
 	 *		'username' => '*'
 	 *		'execute' => array()
+	*
 	 */
 
 	$boolDebugLogging = TRUE;
 
 	$arrConfig['SABITU-DEV'] = array(
 		'repository' => 'sabitu',
+<<<<<<< HEAD
                 'branch'     => 'dev',
                 'execute'    => array('cd /var/www/sabitu-dev; git reset --hard 2>&1;git clean -f -d 2>&1;git pull producao dev'));
+=======
+								'branch'     => 'dev',
+								'execute'    => array('cd /var/www/sabitu-dev; git reset --hard 2>&1;git clean -f -d 2>&1;git pull develop dev'));
+>>>>>>> e416042f181c4bda724d2e76a1b437c1526012bb
