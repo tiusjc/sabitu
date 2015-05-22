@@ -1,0 +1,9 @@
+{
+    "type": "sftp",
+    "host": "ict.unifesp.br",
+    "username": "tiusjc",
+    "password": "c0ck#Tic",
+    "port": 2244,
+    "remotePath": "/var/www/sabitu",
+    "uploadOnSave": true
+}
