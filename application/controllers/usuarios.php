@@ -3,19 +3,19 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
   class usuarios extends MY_Controller {
-    
+
     function __construct(){
 
       parent::__construct();
       $this->load->model('form_cadastro_model');
-      
+
       $this->session->set_userdata( 'check_id', $this->usuario_id );
       $this->output->enable_profiler(TRUE);
     }
-    
+
 
     public function index(){
-      
+
       $this->crud->set_table('usuarios');
 
       if (!$this->adm){
@@ -30,26 +30,26 @@ if (!defined('BASEPATH'))
       $this->crud->set_rules('cep'      ,'cep'     ,'required|valid_campo[8]');
       $this->crud->set_rules('foneFixo' ,'foneFixo','required|valid_campo[12]');
       $this->crud->set_rules('foneCel'  ,'foneCel' ,'required|valid_campo[13]');
-    
+
       $this->crud->required_fields('nome' , 'sexo','cpf','rg','email','endereco','bairro','cidade','uf','cep','estadoCivil','foneFixo','FoneCel');
       $this->crud->columns('nome','email','foneFixo','foneCel','dataCadastro');
-      
+
       $this->crud->callback_before_update(array($this, '_prepare_field'));
       $this->crud->callback_before_insert(array($this, '_prepare_field'));
-      
+
       $this->crud->field_type( 'senha', 'hidden');
       $this->crud->field_type( 'dataCadastro', 'hidden');
-      
+
 
       $this->load->vars($this->crud->render());
-      $this->load->view( 'gerenciar');       
+      $this->load->view( 'gerenciar');
     }
-    
+
     public function _prepare_field( $array_post ) {
       if($this->crud->getState() == 'update' || $this->crud->getState() == 'add') {
         $array_post['dataCadastro'] = date('Y-m-d H:i:s');
       }
-   
+
       return $array_post;
     }
 
@@ -59,4 +59,3 @@ if (!defined('BASEPATH'))
        return $this->db->insert('user_logs', array('usuario_id' => $this->usuario_id,'form_id' => $primary_key,'action'=>'delete', 'data' => date('Y-m-d H:i:s')));
     }
   }
-

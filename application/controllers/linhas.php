@@ -5,7 +5,7 @@ if (!defined('BASEPATH'))
 
 class Linhas extends MY_Controller {
 	function index(){
-      
+
       $this->crud->set_table('linhadepesquisa');
       $this->crud->set_subject('Cadastro de Linhas de Pesquisa');
 
@@ -16,9 +16,9 @@ class Linhas extends MY_Controller {
 
 
       $this->crud->set_relation('form_id','form','descricao');
-     
+
       $this->load->vars($this->crud->render());
-      $this->load->view('gerenciar.php');       
+      $this->load->view('gerenciar.php');
     }
 
 }

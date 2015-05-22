@@ -9,22 +9,22 @@ class Form extends MY_Controller {
         parent::__construct();
         $this->load->dbforge();
         $this->output->enable_profiler(TRUE);
-        
+
     }
 
     public function index(){
 
      try{
-        
-                
+
+
         $tabela = "form";
-        
+
         $this->crud->set_subject('Cadastro de Formulários');
 
         $this->crud->columns('descricao','sigla','data_inicio','data_fim','status','inscricoes','campos','linhas');
-      
+
         $this->crud->set_table( $tabela );
-      
+
       //  $this->crud->callback_column('inscricoes',array($this,'count_inscricoes'));
       //  $this->crud->callback_column('campos',array($this,'count_campos'));
       //  $this->crud->callback_column('linhas',array($this,'count_linhas'));
@@ -34,17 +34,17 @@ class Form extends MY_Controller {
 
         $this->crud->callback_before_delete(array($this, 'before_delete'));
 
-        
+
         $output = $this->crud->render();
-        $this->load->view('gerenciar.php',$output);    
+        $this->load->view('gerenciar.php',$output);
 
       } catch(Exception $e) {
         fb::info($e->getMessage().' --- '.$e->getTraceAsString());
-      }    
+      }
     }
 
     public function before_delete( $primary_key ) {
-      
+
       $query_campo  = $this->db->query('SELECT COUNT(*) AS qtd_campos FROM information_schema.columns WHERE table_schema ="sabitu" AND table_name ="'.$row->sigla.'"');
       $campos = $query_campo->row();
       if( $campos->qtd_campos > 4){
@@ -56,14 +56,14 @@ class Form extends MY_Controller {
         $this->session->set_userdata( 'form_id', 0 );
         $this->form_id = 0;
         return $this->db->insert('user_logs', array('usuario_id' => $this->usuario_id,'form_id' => $primary_key,'action'=>'delete', 'data' => date('Y-m-d H:i:s')));
-        
+
       }
 
 
     }
 
 
- 
+
 
 
     public function count_inscricoes($primary_key, $row)
@@ -74,7 +74,7 @@ class Form extends MY_Controller {
         return $inscricoes->qtd_inscricoes;
       }else{
         return 0;
-      
+
       }
     }
 
@@ -87,10 +87,10 @@ class Form extends MY_Controller {
       }else{
         return 0;
       }
-    } 
+    }
 
     public function count_linhas($value, $row){
-      
+
      if($this->db->table_exists($row->sigla)){
 
       $query_linhas = $this->db->query("SELECT COUNT(*) AS qtd_linhas FROM linhadepesquisa WHERE form_id =$row->id");
@@ -98,7 +98,7 @@ class Form extends MY_Controller {
       return $linhas->qtd_linhas;
     }else{
         return 0;
-      
+
     }
   }
 
@@ -131,7 +131,7 @@ class Form extends MY_Controller {
     //     $backup =& $this->dbutil->backup($prefs);
 
     //     $this->load->helper('file');
-    //     write_file('assets/uploads/files/'.$table01.'.zip', $backup); 
+    //     write_file('assets/uploads/files/'.$table01.'.zip', $backup);
 
     //     Load the download helper and send the file to your desktop
     //     $this->load->helper('download');
@@ -139,7 +139,7 @@ class Form extends MY_Controller {
 
     //   }
 
-  
+
 
   function cria_table( $array_post ){
 
@@ -147,27 +147,27 @@ class Form extends MY_Controller {
         if (!$this->db->table_exists( 'user_logs' ) ){
 
             $fields = array(
-                        
+
                          'id' => array(
                          'type'                 => 'INT',
-                         'constraint'           => 11, 
+                         'constraint'           => 11,
                          'auto_increment'       => TRUE
                          ),
 
                          'usuario_id'         => array(
                          'type'                 => 'INT',
-                         'constraint'           => 11 
+                         'constraint'           => 11
                          ),
 
                          'form_id' => array(
                          'type'                 => 'INT',
                          'constraint'           => 11
                          ),
-                          
+
                          'action'               => array(
                          'type'                 => 'VARCHAR',
                          'constraint'           => 200
-                         ),  
+                         ),
 
                          'data'                => array(
                          'type'                => 'DATETIME'
@@ -182,43 +182,43 @@ class Form extends MY_Controller {
 
         // CRIA A TABELA FORMULÁRIOS
         $nome_tabela = $array_post['sigla'];
-      
+
         $this->dbforge->drop_table( $nome_tabela );
-        
+
         $fields = array(
-                      
+
                       'id'               => array(
                       'type'           => 'INT',
-                      'constraint'     => 11, 
+                      'constraint'     => 11,
                       'auto_increment' => TRUE
                        ),
 
                       'usuario_id'        => array(
                       'type'           => 'INT',
-                      'constraint'     => 11 
+                      'constraint'     => 11
                        ),
 
                        'form_id'  => array(
                            'type'              => 'INT',
                            'constraint'        => 11
-        
+
                        ),
                        'data_cadastro' => array(
                            'type'              => 'DATETIME'
-        
+
                        ),
 
         );
-        
+
        // $attributes = array('ENGINE' => 'InnoDB');
         $this->dbforge->add_field($fields);
-       
+
         $this->dbforge->add_key('id', TRUE);
         $this->dbforge->create_table( $nome_tabela );
-        
-   
+
+
         return $array_post;
-       
+
     }
 
 

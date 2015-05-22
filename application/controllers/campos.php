@@ -7,7 +7,7 @@ class Campos extends MY_Controller {
 
       function __construct(){
       parent::__construct();
-      
+
       $this->load->model('form_cadastro_model');
       $this->load->model('usuarios_model');
       $this->load->model('campos_model');
@@ -28,31 +28,31 @@ class Campos extends MY_Controller {
 
 
           $nome_tabela = "campos";
-          
+
           //CRIA A TABELA DE CAMPOS DO PROCESSO SELETIVO
-          
+
           if (!$this->db->table_exists( $nome_tabela ) ){
 
             $fields = array(
-                        
+
                           'id' => array(
                           'type'           => 'INT',
-                          'constraint'     => 11, 
+                          'constraint'     => 11,
                           'auto_increment' => TRUE
 
                          ),
 
                         'form_id' => array(
                         'type'                => 'INT',
-                        'constraint'          => 11 
+                        'constraint'          => 11
                          ),
 
                         'field'       => array(
                         'type'                => 'VARCHAR',
                         'constraint'          => 100
-                         
+
                          ),
-                    
+
                         'type'       => array(
                           'type'                => "ENUM( 'INT',
                                                           'TINYINT',
@@ -66,51 +66,51 @@ class Campos extends MY_Controller {
                                                           'DATETIME',
                                                           'UM-PARA-MUITOS')"
 
-                         
+
                          ),
 
 
                         'size'       => array(
                           'type'                => 'VARCHAR',
                           'constraint'          => 200
-                         
-                         ),  
+
+                         ),
 
                          'label'       => array(
                           'type'                => 'VARCHAR',
                           'constraint'          => 200
-                         
+
                          ),
 
                         'rules'       => array(
                           'type'                => 'VARCHAR',
-                          'constraint'          => 200 
-                         
+                          'constraint'          => 200
+
                          ),
 
                         'grid'       => array(
                           'type'                => 'TINYINT',
-                          'constraint'          => 1, 
+                          'constraint'          => 1,
                           'default'             => 1
                          ),
 
                         'add_edit'       => array(
                           'type'                => 'TINYINT',
-                          'constraint'          => 1, 
+                          'constraint'          => 1,
                           'default'             => 1
-                         
+
                          ),
 
                         'upload'       => array(
                           'type'                => 'TINYINT',
-                          'constraint'          => 1, 
+                          'constraint'          => 1,
                           'default'             => 0
-                         
+
                          ),
 
                         'ordem'       => array(
                            'type'                => 'INT',
-                           'constraint'          => 2 
+                           'constraint'          => 2
                          ),
 
             );
@@ -134,7 +134,7 @@ class Campos extends MY_Controller {
           $this->crud->display_as('grid','Mostra na grade');
           $this->crud->display_as('add_edit','Mostra na Inclusão/Edição');
           $this->crud->display_as('upload','Campo para upload de Arquivo');
-          
+
           $this->crud->set_table( $nome_tabela );
           $this->crud->order_by('form_id asc,ordem');
 
@@ -142,7 +142,7 @@ class Campos extends MY_Controller {
           $this->crud->unset_export();
           $this->crud->unset_print();
           $this->crud->unset_edit();
-          
+
           if( $this->form_id ){
             // $this->crud->unset_delete();
           }
@@ -152,58 +152,58 @@ class Campos extends MY_Controller {
 
           $this->crud->callback_after_insert(array($this, 'cria_field'));
           $this->crud->callback_after_update(array($this, 'cria_field'));
-          
+
           $this->crud->callback_before_delete(array($this, 'delete_field'));
-          
-         
+
+
           $this->crud->set_relation('form_id','form','descricao');
-        
+
           $this->load->vars($this->crud->render());
           $this->load->view('gerenciar.php');
 
        } catch(Exception $e) {
            fb::info($e->getMessage().' --- '.$e->getTraceAsString());
-       }     
+       }
     }
 
    function cria_field( $array_post ){
 
         $nome_tabela = $this->form_model->getField($array_post['form_id'],'sigla');
-             
-        if ($array_post['type'] == 'DATETIME' || $array_post['type'] == 'TEXT') {	
-	  
+
+        if ($array_post['type'] == 'DATETIME' || $array_post['type'] == 'TEXT') {
+
 	         $this->db->simple_query("ALTER TABLE ".$nome_tabela." ADD ".$array_post['field']." ".$array_post['type']. " null" );
-          
+
         } else {
 
            if( $array_post['type'] == 'UM-PARA-MUITOS' ){
                $array_post['type'] = 'VARCHAR';
-               
+
                if (!$this->db->table_exists( $nome_tabela.'_'.$array_post['field'] ) ){
 
                   $fields = array(
-                         
+
                          'id' => array(
                          'type'           => 'INT',
-                         'constraint'     => 11, 
+                         'constraint'     => 11,
                          'auto_increment' => TRUE
                          ),
 
                         'form_id' => array(
                         'type'                => 'INT',
-                        'constraint'          => 11 
+                        'constraint'          => 11
                          ),
 
                         'descricao'       => array(
                         'type'                => 'VARCHAR',
                         'constraint'          => 100
-                         
+
                          ),
 
                         'status'       => array(
                         'type'                => 'TINYINT',
                         'constraint'          => 1
-                         
+
                          ),
                   );
 
@@ -214,20 +214,20 @@ class Campos extends MY_Controller {
 
 
                   //CRIA A TABELA DE SIGLA_DETALHES
-        
+
                   $this->dbforge->drop_table($nome_tabela.'_'.$array_post['field'].'_');
-    
+
                   $fields = array(
-                      
+
                       $nome_tabela.'_id' => array(
                       'type'               => 'INT',
-                      'constraint'         => 11 
+                      'constraint'         => 11
                       ),
 
                       $array_post['field'].'_id' => array(
                       'type'               => 'INT',
-                      'constraint'         => 11 
-                       
+                      'constraint'         => 11
+
                       ),
                   );
 
@@ -253,7 +253,7 @@ class Campos extends MY_Controller {
          $query_form = $this->db->query("SELECT sigla FROM form WHERE id=$form_id");
          $form       = $query_form->row();
          $form_sigla = $form->sigla;
-        
+
   	     if ( $this->db->simple_query("ALTER TABLE $form_sigla DROP $form_field") ){
   		    return true;
   	     } else {
@@ -262,15 +262,15 @@ class Campos extends MY_Controller {
       }
 
    function before_insert_update( $array_post ) {
-    
+
         if( $array_post['type'] == 'UM-PARA-MUITOS'){
             $array_post['grid'] = 0;
             $array_post['add_edit'] = 1;
-        }    
+        }
 
         if($array_post['label'] == ''){
            $array_post['label'] = $array_post['field'];
-        }    
+        }
 
 
         return $array_post;

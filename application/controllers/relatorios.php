@@ -3,7 +3,7 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
   class Relatorios extends MY_Controller {
-    
+
     function __construct(){
 
       parent::__construct();
@@ -12,7 +12,7 @@ if (!defined('BASEPATH'))
       $this->output->enable_profiler(TRUE);
 
     }
-    
+
 
     public function index(){
       $tabela_campos = "campos";
@@ -27,7 +27,7 @@ if (!defined('BASEPATH'))
       $this->crud->set_table( $this->form_sigla );
 
 
-      
+
       $this->crud->display_as('usuario_id' ,'Usuário');
       $this->crud->display_as('form_id'    ,'Formulário');
       $this->crud->unset_delete();
@@ -42,10 +42,10 @@ if (!defined('BASEPATH'))
       $upload = $this->form_cadastro_model->getFieldsLabelRules($this->form_id, "field,upload", 1,$tabela_campos);
 
       for($i=0;$i<count($upload);$i++){
-          $this->crud->set_field_upload( $upload[$i]["field"], 'assets/uploads/files');  
+          $this->crud->set_field_upload( $upload[$i]["field"], 'assets/uploads/files');
       }
 
       $this->load->vars($this->crud->render());
-      $this->load->view( 'gerenciar');       
+      $this->load->view( 'gerenciar');
     }
   }

@@ -34,7 +34,7 @@ class Registro extends CI_Controller {
 
 			$emailto  = $this->input->post('email');
 			$senha    = $this->input->post('senha');
-			$mensagem1 = "Você pode logar agora ";			
+			$mensagem1 = "Você pode logar agora ";
 			$mensagem2 = "Um email foi enviado para <b>$emailto</b>.Você pode logar agora ";
 
 			$data['email'] = $emailto;
@@ -47,8 +47,8 @@ class Registro extends CI_Controller {
 				$data['link']    = base_url().'login';
 
 				$sucesso_email = $this->load->view('sucesso_view', $data, TRUE);
-				
-				$config = array( 
+
+				$config = array(
 					'protocol'     => 'smtp',
 			    	'smtp_host'    => 'ssl://smtp.gmail.com',
 			    	'smtp_port'    =>  465,
@@ -61,7 +61,7 @@ class Registro extends CI_Controller {
 
 				$this->load->library('email');
 				$this->email->initialize( $config);
-		
+
 				$this->email->from('tiusjc@gmail.com', 'TISJC');
 				$this->email->to( $emailto );
 				$this->email->subject('Registro realizado com sucesso');
@@ -91,4 +91,3 @@ class Registro extends CI_Controller {
 		return TRUE;
 	}
 }
-

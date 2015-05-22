@@ -7,7 +7,7 @@ class Acessoerro extends CI_Controller {
 
     function __construct() {
         parent::__construct();
-        
+
     }
 
     function index(){
@@ -15,8 +15,8 @@ class Acessoerro extends CI_Controller {
     	$data['titulo']  = 'Acesso não autorizado';
     	$data['message'] = 'Voce nao tem permissao para entrar nessa pagina ';
         $data['link']    = 'login';
-		
+
 		$this->load->view('cabecalho');
-        $this->load->view('acessoerro_view',$data);   	
+        $this->load->view('acessoerro_view',$data);
     }
 }

@@ -3,10 +3,10 @@ if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
 class form_cadastro extends MY_Controller{
-    
+
     function __construct(){
       parent::__construct();
-      
+
       $this->load->model('form_cadastro_model');
       $this->load->model('usuario_model');
       $this->load->model('form_model');
@@ -16,15 +16,15 @@ class form_cadastro extends MY_Controller{
 
     public function index(){
 
-      
+
       $this->crud->set_table( 'form' );
 
       $this->crud->columns('descricao','sigla','status');
-        
+
       $this->crud->fields('descricao','sigla','status');
-    
+
       if( $this->adm ){
-    
+
         $this->crud->add_action('Mostrar', '', 'form_cadastro/form/add','read-icon');
         $this->crud->unset_delete();
         $this->crud->unset_edit();
@@ -33,13 +33,13 @@ class form_cadastro extends MY_Controller{
       }else{
 
           if( $this->usuario_model->validarUsuario_nome( $this->usuario_id ) ){
-            
-         
+
+
               redirect('form_cadastro/form');
-            
+
           }else{
 
-            redirect('usuarios');  
+            redirect('usuarios');
           }
       }
 
@@ -50,9 +50,9 @@ class form_cadastro extends MY_Controller{
 
     public function form(){
 
-     
+
       try {
-        
+
         if( $this->adm ){
           $this->form_id    = $this->uri->segment(4);
           $this->form_sigla = $this->form_model->getField($this->form_id,'sigla');
@@ -63,19 +63,19 @@ class form_cadastro extends MY_Controller{
           $this->session->set_userdata( 'form_nome' , $this->form_nome );
           $this->crud->unset_back_to_list();
         } else {
-        
+
           $this->crud->unset_print();
           $this->crud->unset_export();
           $this->crud->unset_delete();
-          
+
           if( $this->form_cadastro_id ){
 
-              $this->crud->unset_add();            
+              $this->crud->unset_add();
           }
           $this->crud->where( 'usuario_id', $this->usuario_id  );
           $this->crud->where( 'form_id'   , $this->form_id  );
         }
- 
+
 
 
         $form_existe  = $this->form_model->getForm_existe( $this->form_sigla );
@@ -85,14 +85,14 @@ class form_cadastro extends MY_Controller{
           '<div class="alert alert-danger">Atenção: O Formulário '. $this->form_sigla. ' ainda não existe!</div>');
           redirect('form_cadastro');
         }
-            
+
 
         $tabela        = $this->form_sigla;
         $tabela_campos = 'campos';
-     
+
 
         $this->crud->set_subject( 'Fazer Inscrição no '.$this->form_sigla );
-        
+
         $this->crud->set_table( $tabela );
 
         $detalhes = array();
@@ -103,49 +103,49 @@ class form_cadastro extends MY_Controller{
                                                     $tabela.'_id', $detalhes[$i]["field"].'_id','descricao',
                                                     null, array( 'form_id' => $this->form_id));
         }
-   
+
         $this->crud->columns        ( $this->form_cadastro_model->getFields($this->form_id, 0, 1, 0  ,$tabela_campos ));
         $this->crud->fields         ( $this->form_cadastro_model->getFields($this->form_id, 0, 0, 1  ,$tabela_campos ));
         $this->crud->required_fields( $this->form_cadastro_model->getFields($this->form_id, 1, 0, 0  ,$tabela_campos ));
-       
+
         $this->crud->set_rules( $this->form_cadastro_model->getFieldsLabelRules($this->form_id,"field,label,rules", 0,0,$tabela_campos) );
-        
+
         $this->crud->field_type( 'usuario_id'   , 'hidden', $this->usuario_id );
         $this->crud->field_type( 'form_id'      , 'hidden', $this->form_id );
         $this->crud->field_type( 'data_cadastro', 'hidden');
-        
+
         $this->set_rules();
 
         $upload = array();
         $upload = $this->form_cadastro_model->getFieldsLabelRules($this->form_id,"field,upload", 1,0,$tabela_campos);
-        
+
         for($i=0;$i<count($upload);$i++){
-          $this->crud->set_field_upload( $upload[$i]["field"], 'assets/uploads/files');  
+          $this->crud->set_field_upload( $upload[$i]["field"], 'assets/uploads/files');
         }
-            
+
         $display = array();
         $display = $this->form_cadastro_model->getFieldsLabelRules($this->form_id,"field,label", 1,0,$tabela_campos);
 
         for($i=0;$i<count($display);$i++){
-           $this->crud->display_as($display[$i]["field"],$display[$i]["label"]);  
+           $this->crud->display_as($display[$i]["field"],$display[$i]["label"]);
         }
-       
+
         $this->crud->callback_before_update(array($this,'before_insert_update'));
         $this->crud->callback_before_insert(array($this,'before_insert_update'));
-        
+
         $this->crud->callback_after_update(array($this, 'after_update'));
         $this->crud->callback_after_insert(array($this, 'after_insert'));
-        
+
         $this->crud->callback_after_delete(array($this, 'after_delete'));
 
         $this->crud->set_rules('usuario_id','form_cadastro','callback_before_insert');
-      
+
         $this->load->vars($this->crud->render());
         $this->load->view( 'gerenciar' );
-      
+
       } catch(Exception $e) {
           fb::info($e->getMessage().' --- '.$e->getTraceAsString());
-      }     
+      }
     }
 
     private function set_rules(){
@@ -170,7 +170,7 @@ class form_cadastro extends MY_Controller{
     }
 
     public function checar_campos($pk1, $pk2) {
-      
+
       $this->db->where('form_id', $pk2);
       if( $this->db->count_all_results('campos') < 1 ) {
         $this->form_validation->set_message('checar_campos','Cadastre pelo menos um campo para este Formulário.');
@@ -182,7 +182,7 @@ class form_cadastro extends MY_Controller{
     }
 
     public function before_insert_update( $array_post ) {
-  
+
       $array_post['usuario_id']    = $this->usuario_id;
       $array_post['form_id']       = $this->form_id;
       $array_post['data_cadastro'] = date('Y-m-d H:i:s');
@@ -210,4 +210,3 @@ class form_cadastro extends MY_Controller{
     }
 
   }
-
