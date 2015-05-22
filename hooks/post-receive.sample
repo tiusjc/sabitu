@@ -13,3 +13,15 @@
 # rename the file to "post-receive".
 
 #. /usr/share/doc/git-core/contrib/hooks/post-receive-email
+
+while read oldrev newrev refname
+do
+    branch=$(git rev-parse --symbolic --abbrev-ref $refname)
+    if [ "master" == "$branch" ]; then
+        echo "master" > master.txt
+    fi
+  
+    if [ "dev" == "$branch"  ]; then 
+       echo "dev" > dev.txt
+    fi
+done
