@@ -15,13 +15,9 @@
 |
 */
 
-<<<<<<< HEAD
-$config['base_url']	= 'http://200.133.202.156/sabitu';
-$config['app_name']	= 'SABITU DEV';
-=======
-$config['base_url']	= 'http://ict.unifesp.br/sabitu';
-$config['app_name']	= 'SABITUx';
->>>>>>> e416042f181c4bda724d2e76a1b437c1526012bb
+
+$config['base_url']	= 'http://lab.unifesp.br/sabitu';
+$config['app_name']	= 'SABITU';
 $config['app_vers']	= 'Beta 1.0.0';
 $config['app_desc']	= 'Gerador de Formulários';
 
@@ -33,7 +29,6 @@ $config['adm_user']	= array(
 $config['adm_menu']	= array(
         				"Administradores"        => "adm",
         				"Formulários"            => "form",
-        				"Linhas de Pesquisa"     => "linhas",
         				"Campos (Formulários)"   => "campos",
         				"Relatórios (Inscritos)" => "relatorios"
         			  );

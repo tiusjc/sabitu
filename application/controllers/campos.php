@@ -65,8 +65,6 @@ class Campos extends MY_Controller {
                                                           'DATE',
                                                           'DATETIME',
                                                           'UM-PARA-MUITOS')"
-
-
                          ),
 
 
@@ -122,18 +120,18 @@ class Campos extends MY_Controller {
           }
 
 
-          $this->crud->columns("form_id", "field", "type", "size", "label", "rules", "grid", "add_edit", "upload", "ordem");
+          $this->crud->columns("form_id", "field", "type", "size", "label","rules", "grid", "add_edit", "upload", "ordem");
           $this->crud->required_fields('field' , 'type');
 
           $this->crud->display_as('form_id','Formulário');
-          $this->crud->display_as('type','Tipo do campo');
+          $this->crud->display_as('type','Tipo');
           $this->crud->display_as('field','Nome do campo');
-          $this->crud->display_as('size','Tamanho do campo');
+          $this->crud->display_as('size','Tamanho');
           $this->crud->display_as('label','Exibir como');
-          $this->crud->display_as('rules','Regras de validação Ex: required|md5|min(5)|max(6)');
+          // $this->crud->display_as('rules','Regras de validação Ex: required|md5|min(5)|max(6)');
           $this->crud->display_as('grid','Mostra na grade');
           $this->crud->display_as('add_edit','Mostra na Inclusão/Edição');
-          $this->crud->display_as('upload','Campo para upload de Arquivo');
+          $this->crud->display_as('upload','Upload');
 
           $this->crud->set_table( $nome_tabela );
           $this->crud->order_by('form_id asc,ordem');
@@ -212,29 +210,27 @@ class Campos extends MY_Controller {
                   $this->dbforge->add_key('form_id', TRUE);
                   $this->dbforge->create_table( $nome_tabela.'_'.$array_post['field'] );
 
-
                   //CRIA A TABELA DE SIGLA_DETALHES
 
-                  $this->dbforge->drop_table($nome_tabela.'_'.$array_post['field'].'_');
+                  $this->dbforge->drop_table($nome_tabela.'_tem_'.$array_post['field']);
 
                   $fields = array(
 
                       $nome_tabela.'_id' => array(
-                      'type'               => 'INT',
-                      'constraint'         => 11
+                      'type'             => 'INT',
+                      'constraint'       => 11
                       ),
 
-                      $array_post['field'].'_id' => array(
+                      $nome_tabela.'_'.$array_post['field'].'_id' => array(
                       'type'               => 'INT',
                       'constraint'         => 11
-
                       ),
                   );
 
                   $this->dbforge->add_field($fields);
                   $this->dbforge->add_key($nome_tabela.'_id', TRUE);
-                  $this->dbforge->add_key($array_post['field'].'_id', TRUE);
-                  $this->dbforge->create_table($nome_tabela.'_'.$array_post['field'].'_');
+                  $this->dbforge->add_key($nome_tabela.'_'.$array_post['field'].'_id', TRUE);
+                  $this->dbforge->create_table($nome_tabela.'_tem_'.$array_post['field']);
            }
 
         }

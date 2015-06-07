@@ -64,7 +64,7 @@ $autoload['libraries'] = array('database','grocery_CRUD','session','form_validat
 |	$autoload['helper'] = array('url', 'file');
 */
 
-$autoload['helper'] = array('url','form','array','dropdown_helper');
+$autoload['helper'] = array('url','form','array','dropdown_helper','validar_helper');
 
 
 /*

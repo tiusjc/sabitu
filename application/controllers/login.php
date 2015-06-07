@@ -26,7 +26,6 @@
         }
 
         function index() {
-            $dados = array();
             $this->form_validation->set_rules('email', 'Email', 'required');
             $this->form_validation->set_rules('senha', 'Senha', 'required');
 

@@ -19,28 +19,28 @@
 	function unique($str = '', $field = '')
 	{
 		$CI =& get_instance();
-		
+
 		$res = explode('.', $field, 3);
-		
+
 		$table	= $res[0];
 		$column	= $res[1];
 
 		$CI->form_validation->set_message('unique', 'O %s informado não está disponível.');
-		
-		
+
+
 		$CI->db->select('COUNT(*) as total');
 		$CI->db->where($column, $str);
-		
+
 		if( isset($res[2]) )
 		{
 			$res2 = explode(':', $res[2], 2);
 			$ignore_value = $res2[0];
-			
+
 			if( isset($res2[1]) )
 				$ignore_field = $res2[1];
 			else
 				$ignore_field = 'id';
-			
+
 			$CI->db->where($ignore_field . ' !=', $ignore_value);
 		}
 
@@ -48,7 +48,17 @@
 		return ($total > 0) ? FALSE : TRUE;
 	}
 
+	function valid_campo($campo,$tamanho){
+		$CI =& get_instance();
+		$CI->form_validation->set_message('valid_campo', 'O %s informado não é válido.');
 
+		$campo = preg_replace('/[^0-9]/','',$campo);
+
+		if( strlen($campo) != $tamanho || preg_match('/^([0-9])\1+$/', $campo )){
+			return false;
+		}
+		return true;
+	}
 
     /**
      *
@@ -79,7 +89,7 @@
     function valid_cpf($cpf)
     {
         $CI =& get_instance();
-        
+
         $CI->form_validation->set_message('valid_cpf', 'O %s informado não é válido.');
 
         $cpf = preg_replace('/[^0-9]/','',$cpf);
@@ -104,7 +114,7 @@
             $summod11 = $sum % 11;
             $digit[$j-1] = $summod11 < 2 ? 0 : 11 - $summod11;
         }
-        
+
         return $digit[9] == ((int)$cpf[9]) && $digit[10] == ((int)$cpf[10]);
     }
 
@@ -112,7 +122,7 @@
      * valid_date
      *
      * valida data no pradrao brasileiro
-     * 
+     *
      * @access	public
      * @param	string
      * @return	bool
@@ -131,7 +141,7 @@
      * valid_cep
      *
      * Verifica se CEP é válido
-     * 
+     *
      * @access	public
      * @param	string
      * @return	bool

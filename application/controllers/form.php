@@ -45,17 +45,17 @@ class Form extends MY_Controller {
 
     public function before_delete( $primary_key ) {
 
-      $query_campo  = $this->db->query('SELECT COUNT(*) AS qtd_campos FROM information_schema.columns WHERE table_schema ="sabitu" AND table_name ="'.$row->sigla.'"');
+      $query_campo  = $this->db->query('SELECT COUNT(*) AS qtd_campos FROM information_schema.columns WHERE table_schema ="sabitu" AND table_name ="'.$this->sigla.'"');
       $campos = $query_campo->row();
       if( $campos->qtd_campos > 4){
-        $this->session->set_flashdata('mensagem',
+          $this->session->set_flashdata('mensagem',
             '<div class="alert alert-danger">Por favor, primeiro remova os campos deste formulário!</div>');
           return false;
       }else{
 
         $this->session->set_userdata( 'form_id', 0 );
         $this->form_id = 0;
-        return $this->db->insert('user_logs', array('usuario_id' => $this->usuario_id,'form_id' => $primary_key,'action'=>'delete', 'data' => date('Y-m-d H:i:s')));
+        return $this->db->insert('logs', array('usuario_id' => $this->usuario_id,'form_id' => $primary_key,'action'=>'delete', 'data' => date('Y-m-d H:i:s')));
 
       }
 
@@ -144,7 +144,7 @@ class Form extends MY_Controller {
   function cria_table( $array_post ){
 
 
-        if (!$this->db->table_exists( 'user_logs' ) ){
+        if (!$this->db->table_exists( 'logs' ) ){
 
             $fields = array(
 
@@ -177,7 +177,7 @@ class Form extends MY_Controller {
 
             $this->dbforge->add_field($fields);
             $this->dbforge->add_key('id', TRUE);
-            $this->dbforge->create_table( 'user_logs' );
+            $this->dbforge->create_table( 'logs' );
         }
 
         // CRIA A TABELA FORMULÁRIOS

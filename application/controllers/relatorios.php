@@ -26,8 +26,6 @@ if (!defined('BASEPATH'))
       }
       $this->crud->set_table( $this->form_sigla );
 
-
-
       $this->crud->display_as('usuario_id' ,'Usuário');
       $this->crud->display_as('form_id'    ,'Formulário');
       $this->crud->unset_delete();
@@ -39,7 +37,7 @@ if (!defined('BASEPATH'))
       $this->crud->set_relation('form_id'   , 'form'    , 'descricao');
 
       $upload = array();
-      $upload = $this->form_cadastro_model->getFieldsLabelRules($this->form_id, "field,upload", 1,$tabela_campos);
+      $upload = $this->form_cadastro_model->getFieldsLabelRules($this->form_id, "field,upload", 1,0, $tabela_campos);
 
       for($i=0;$i<count($upload);$i++){
           $this->crud->set_field_upload( $upload[$i]["field"], 'assets/uploads/files');

@@ -41,7 +41,6 @@
 $route['default_controller'] = "login";
 $route['404_override'] = '';
 
-$route["processos"] = 'processos/index/edit/$1';
 
 //$route["view/(.*)"] = 'webpages/view/$1';
 

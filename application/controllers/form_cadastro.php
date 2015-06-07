@@ -2,13 +2,13 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class form_cadastro extends MY_Controller{
+class Form_cadastro extends MY_Controller{
 
     function __construct(){
       parent::__construct();
 
       $this->load->model('form_cadastro_model');
-      $this->load->model('usuario_model');
+      $this->load->model('usuarios_model');
       $this->load->model('form_model');
       $this->session->set_userdata( 'check_id', $this->form_cadastro_id );
       $this->output->enable_profiler(TRUE);
@@ -32,7 +32,7 @@ class form_cadastro extends MY_Controller{
         $this->crud->unset_read();
       }else{
 
-          if( $this->usuario_model->validarUsuario_nome( $this->usuario_id ) ){
+          if( $this->usuarios_model->validarUsuario_nome( $this->usuario_id ) ){
 
 
               redirect('form_cadastro/form');
@@ -50,10 +50,10 @@ class form_cadastro extends MY_Controller{
 
     public function form(){
 
-
       try {
 
         if( $this->adm ){
+
           $this->form_id    = $this->uri->segment(4);
           $this->form_sigla = $this->form_model->getField($this->form_id,'sigla');
           $this->form_nome  = $this->form_model->getField($this->form_id,'descricao');
@@ -62,6 +62,7 @@ class form_cadastro extends MY_Controller{
           $this->session->set_userdata( 'form_sigla', $this->form_sigla );
           $this->session->set_userdata( 'form_nome' , $this->form_nome );
           $this->crud->unset_back_to_list();
+
         } else {
 
           $this->crud->unset_print();
@@ -72,6 +73,7 @@ class form_cadastro extends MY_Controller{
 
               $this->crud->unset_add();
           }
+
           $this->crud->where( 'usuario_id', $this->usuario_id  );
           $this->crud->where( 'form_id'   , $this->form_id  );
         }
@@ -96,11 +98,11 @@ class form_cadastro extends MY_Controller{
         $this->crud->set_table( $tabela );
 
         $detalhes = array();
-        $detalhes = $this->form_cadastro_model->getFieldsLabelRules($this->form_id,"field,label", 0,1,$tabela_campos);
+        $detalhes = $this->form_cadastro_model->getFieldsLabelRules($this->form_id, "field,label", 0, 1, $tabela_campos);
 
         for($i=0;$i < count($detalhes);$i++){
-            $this->crud->set_relation_n_n( $detalhes[$i]["label"], $tabela.'_'.$detalhes[$i]["field"]      ,$tabela.'_'.$detalhes[$i]["field"],
-                                                    $tabela.'_id', $detalhes[$i]["field"].'_id','descricao',
+            $this->crud->set_relation_n_n( $detalhes[$i]["field"], $tabela.'_tem_'.$detalhes[$i]["field"] ,$tabela.'_'.$detalhes[$i]["field"],
+                                                    $tabela.'_id', $tabela.'_'.$detalhes[$i]["field"].'_id','descricao',
                                                     null, array( 'form_id' => $this->form_id));
         }
 
@@ -114,7 +116,7 @@ class form_cadastro extends MY_Controller{
         $this->crud->field_type( 'form_id'      , 'hidden', $this->form_id );
         $this->crud->field_type( 'data_cadastro', 'hidden');
 
-        $this->set_rules();
+        // $this->set_rules();
 
         $upload = array();
         $upload = $this->form_cadastro_model->getFieldsLabelRules($this->form_id,"field,upload", 1,0,$tabela_campos);
@@ -150,10 +152,10 @@ class form_cadastro extends MY_Controller{
 
     private function set_rules(){
 
-      $this->crud->set_rules('usuario_id','usuario','required');
+      $this->crud->set_rules('usuario_id','Usuários','required');
       $this->crud->set_rules('form_id','Formulário','required');
       if ( $this->crud->getState() == 'insert' || $this->crud->getState() == 'insert_validation'){
-           $this->crud->set_rules('usuario_id','usuarios','callback_unique_form_cadastro['.$this->input->post('form_id').']');
+           $this->crud->set_rules('usuario_id','Usuários','callback_unique_form_cadastro['.$this->input->post('form_id').']');
       }
       $this->crud->set_rules('form_id','Formulários','callback_checar_campos['.$this->input->post('form_id').']');
     }
@@ -193,20 +195,20 @@ class form_cadastro extends MY_Controller{
     public function after_insert( $post_array, $primary_key ) {
         $this->session->set_userdata( 'form_cadastro_id', $primary_key );
         $this->form_cadastro_id = $this->session->set_userdata( 'form_cadastro_id', $primary_key );
-        return $this->db->insert('user_logs', array('usuario_id' => $this->usuario_id,'form_id' => $primary_key,'action'=>'insert', 'data' => date('Y-m-d H:i:s')));
+        return $this->db->insert('logs', array('usuario_id' => $this->usuario_id,'form_id' => $primary_key,'action'=>'insert', 'data' => date('Y-m-d H:i:s')));
     }
 
     public function after_update( $post_array, $primary_key ) {
         $this->session->set_userdata( 'form_cadastro_id', $primary_key );
         $this->form_cadastro_id = $this->session->set_userdata( 'form_cadastro_id', $primary_key );
-        return $this->db->insert('user_logs', array('usuario_id' => $this->usuario_id,'form_id' => $primary_key,'action'=>'update', 'data' => date('Y-m-d H:i:s')));
+        return $this->db->insert('logs', array('usuario_id' => $this->usuario_id,'form_id' => $primary_key,'action'=>'update', 'data' => date('Y-m-d H:i:s')));
     }
 
 
     public function after_delete( $primary_key ) {
         $this->session->set_userdata( 'form_cadastro_id', 0 );
         $this->form_cadastro_id = 0;
-        return $this->db->insert('user_logs', array('usuario_id' => $this->usuario_id,'form_id' => $primary_key,'action'=>'delete', 'data' => date('Y-m-d H:i:s')));
+        return $this->db->insert('logs', array('usuario_id' => $this->usuario_id,'form_id' => $primary_key,'action'=>'delete', 'data' => date('Y-m-d H:i:s')));
     }
 
   }
