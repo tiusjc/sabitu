@@ -76,5 +76,8 @@ $( document ).ready(function() {
 
   $('.actions a > span.ui-button-text').html("&nbsp;");
 
+  $('div.form-input-box').each(function(index, value){
+    alert($(this).html());
+  }
 
 });

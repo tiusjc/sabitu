@@ -98,7 +98,7 @@ class Form_cadastro extends MY_Controller{
         $this->crud->set_table( $tabela );
 
         $detalhes = array();
-        $detalhes = $this->form_cadastro_model->getFieldsLabelRules($this->form_id, "field,label", 0, 1, $tabela_campos);
+        $detalhes = $this->form_cadastro_model->getFieldsLabelRules($this->form_id, "field", 0, 1, $tabela_campos);
 
         for($i=0;$i < count($detalhes);$i++){
             $this->crud->set_relation_n_n( $detalhes[$i]["field"], $tabela.'_tem_'.$detalhes[$i]["field"] ,$tabela.'_'.$detalhes[$i]["field"],
