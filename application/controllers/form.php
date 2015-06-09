@@ -19,15 +19,15 @@ class Form extends MY_Controller {
 
         $tabela = "form";
 
-        $this->crud->set_subject('Cadastro de Formulários');
+        $this->crud->set_subject('Formulários');
 
-        $this->crud->columns('descricao','sigla','data_inicio','data_fim','status','inscricoes','campos','linhas');
+        $this->crud->columns('descricao','sigla','data_inicio','data_fim','status','inscricoes','campos');
 
         $this->crud->set_table( $tabela );
 
-      //  $this->crud->callback_column('inscricoes',array($this,'count_inscricoes'));
-      //  $this->crud->callback_column('campos',array($this,'count_campos'));
-      //  $this->crud->callback_column('linhas',array($this,'count_linhas'));
+        $this->crud->callback_column('inscricoes',array($this,'count_inscricoes'));
+        $this->crud->callback_column('campos',array($this,'count_campos'));
+    //    $this->crud->callback_column('linhas',array($this,'count_linhas'));
 
         $this->crud->callback_after_insert(array($this, 'cria_table'));
         $this->crud->callback_after_update(array($this, 'cria_table'));
@@ -58,13 +58,7 @@ class Form extends MY_Controller {
         return $this->db->insert('logs', array('usuario_id' => $this->usuario_id,'form_id' => $primary_key,'action'=>'delete', 'data' => date('Y-m-d H:i:s')));
 
       }
-
-
     }
-
-
-
-
 
     public function count_inscricoes($primary_key, $row)
     {
@@ -83,7 +77,7 @@ class Form extends MY_Controller {
       if($this->db->table_exists($row->sigla)){
         $query_campo  = $this->db->query('SELECT COUNT(*) AS qtd_campos FROM information_schema.columns WHERE table_schema ="sabitu" AND table_name ="'.$row->sigla.'"');
         $campos = $query_campo->row();
-        return $campos->qtd_campos - 4;
+        return $campos->qtd_campos;
       }else{
         return 0;
       }

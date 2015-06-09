@@ -10,7 +10,7 @@
 
     public function index(){
 
-      $this->crud->set_subject('Cadastro de Administradores');
+      $this->crud->set_subject('Administradores');
 
       $usuarios = preencher_dropdown('usuarios','id','email','');
       $this->crud->display_as('usuario_id','Usuário');

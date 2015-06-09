@@ -136,7 +136,7 @@ class Campos extends MY_Controller {
           $this->crud->set_table( $nome_tabela );
           $this->crud->order_by('form_id asc,ordem');
 
-          $this->crud->set_subject('Cadastro de Campos');
+          $this->crud->set_subject('Campos');
           $this->crud->unset_export();
           $this->crud->unset_print();
           $this->crud->unset_edit();

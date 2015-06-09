@@ -63,12 +63,12 @@ $( document ).ready(function() {
 
     });
     $('div.form-field-box').each(function(index, value){
-
          $( '.'+index).wrapAll( "<div class='row' />");
-
     });
 
     $( '.form-field-box' ).wrap( "<div class='col-md-6'></div>" );
+    // $( '.form-field-box' ).wrap( "<div class='form-group'><div class='input-group'></div></div>");
+
 
     $('#form-button-save').hide();
 
@@ -76,8 +76,30 @@ $( document ).ready(function() {
 
   $('.actions a > span.ui-button-text').html("&nbsp;");
 
-  $('div.form-input-box').each(function(index, value){
-    alert($(this).html());
-  }
+  if( window.location.href.indexOf("form_cadastro/form/add/") >= 0){
 
+    $('div.form-input-box').each(function(index, value){
+      var strhtml = $.trim($(this).html());
+      var strhref = window.location.hostname;
+
+      strhtml = strhtml.replace('Please add','Por favor adicione');
+      strhtml = strhtml.replace('first','primeiro');
+
+      var strid = $(this).attr('id').substring(0,$(this).attr('id').indexOf("_"));
+
+      if( strhtml.substring(0,9) == 'Por favor'){
+        $(this).html(strhtml+'<br><a class="add_button ui-button ui-widget" href="http://'+strhref+'/sabitu/umpara/index/'+ strid +'"><div style="height:32px;border-radius: 0px" class="btn btn-primary"><span class="glyphicon glyphicon-plus read-icon Mff75d76a"></span></div></span></a>');
+      }
+
+      if( strhtml.substring(0,7) == '<select'){
+        $('#'+strid +'_input_box').after('<a style="border-top-left-radius: 0px;border-bottom-left-radius: 0px;" class="add_button ui-button ui-widget" href="http://'+strhref+'/sabitu/umpara/index/'+ strid +'"><div  style="height:32px;border-radius: 0px;" class="btn btn-primary"><span class="glyphicon glyphicon-plus read-icon Mff75d76a"></span></div></a>');
+      }
+    });
+    $( 'a.add_button' ).wrap( "<div style='float:left;width:25px;height:30px'>");
+  }
+  strhref = window.location.href;
+  strhref = strhref.substring(strhref.lastIndexOf('/')+1);
+  strtext = $('.ui-button-text').html();
+  strtext = strtext.replace('0',strhref);
+  $('.datatables-add-button a span.ui-button-text').html(strtext);
 });
