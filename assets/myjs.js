@@ -193,7 +193,7 @@ $( document ).ready(function() {
         }
       });
       $("ul.chzn-choices").change(function(){
-        alert('alterou');
+        alert('master');
       });
     });
   }
