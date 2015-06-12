@@ -1,8 +1,14 @@
 {
     "type": "sftp",
+<<<<<<< HEAD
     "host": "lab.unifesp.br",
     "username": "tiusjc",
     "password": "c0ck#Tco",
+=======
+    "host": "ict.unifesp.br",
+    "username": "tiusjc",
+    "password": "c0ck#Tic",
+>>>>>>> master
     "port": 2244,
     "remotePath": "/var/www/sabitu",
     "uploadOnSave": true
