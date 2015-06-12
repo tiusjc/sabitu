@@ -85,9 +85,11 @@ $( document ).ready(function() {
   // ------------------------------------------------------------------------
 //  if( window.location.href.indexOf("form_cadastro/form/add/") >= 0){
 
+  if( window.location.href.indexOf("umpara/index/") >= 0 || window.location.href.indexOf("form_cadastro/form/add/")){
     $('div.form-input-box').each(function(index, value){
       var strhtml = $.trim($(this).html());
       var strhref = window.location.hostname;
+
 
       strhtml = strhtml.replace('Please add','Por favor adicione');
       strhtml = strhtml.replace('first','primeiro');
@@ -97,28 +99,28 @@ $( document ).ready(function() {
       if( strhtml.substring(0,9) == 'Por favor'){
         $(this).html(strhtml+'<br><a class="add_button ui-button ui-widget" href="http://'+strhref+'/sabitu/umpara/index/'+ strid +'"><div style="height:32px;border-radius: 0px" class="btn btn-primary"><span class="glyphicon glyphicon-plus read-icon Mff75d76a"></span></div></span></a>');
       }
-
-      if( strhtml.substring(0,7) == '<select'){
+      if( strhtml.substring(0,7) == '<select' && strhtml.indexOf('multiple') >= 0){
         $('#'+strid +'_input_box').after('<a style="border-top-left-radius: 0px;border-bottom-left-radius: 0px;" class="add_button ui-button ui-widget" href="http://'+strhref+'/sabitu/umpara/index/'+ strid +'"><div  style="height:32px;border-radius: 0px;" class="btn btn-primary"><span class="glyphicon glyphicon-plus read-icon Mff75d76a"></span></div></a>');
       }
+
     });
-  //  $( 'a.add_button' ).wrap( "<div style='float:left;width:25px;height:30px'>");
-//  }
+
 
   // ------------------------------------------------------------------------
   // REGRAS PARA COLOCAR O NOME DA TABELA APÓS O TEXTO ADICIONAR NO CADASTRO DE CAMPOS UM-PARA-MUITOS
   // EX: ADICIONAR <TABELA>
   // ------------------------------------------------------------------------
-  if( window.location.href.indexOf("umpara/index/") >= 0){
-    strhref = window.location.href;
-    strhref = strhref.substring(strhref.lastIndexOf('/')+1);
-    strtext = $('.ui-button-text').html();
-    strtext = strtext.replace('0',strhref);
-    $('.datatables-add-button a span.ui-button-text').html(strtext);
+    if(window.location.href.indexOf("umpara/index/") >= 0){
+      strhref = window.location.href;
+      strhref = strhref.substring(strhref.lastIndexOf('/')+1);
+      strtext = $('.ui-button-text').html();
+      strtext = strtext.replace('0',strhref);
+      $('.datatables-add-button a span.ui-button-text').html(strtext);
+    }
   }
-
   $('.datatables-add-button span.ui-button-icon-primary.ui-icon.ui-icon-circle-plus').addClass('btn btn-info glyphicon glyphicon-plus');
   $('.datatables-add-button span.ui-button-icon-primary.ui-icon.ui-icon-circle-plus').removeClass('ui-button-icon-primary ui-icon ui-icon-circle-plus');
+
 
 
   // $('tfoot tr th a span.ui-button-text').html( $('tfoot tr th a span.ui-button-text').html().replace('Limpar','') );
@@ -126,7 +128,7 @@ $( document ).ready(function() {
   // ------------------------------------------------------------------------
   // REGRAS PARA OS CADASTRO DE CAMPOS
   // ------------------------------------------------------------------------
-  if( window.location.href.indexOf("campos/index/") >= 0){
+  if( window.location.href.indexOf("campos/index/") >= 0 ){
     strregras = $.trim($('div#Regras_display_as_box.form-display-as-box').html());
 
     regrastxt =

@@ -87,10 +87,7 @@ class Form_cadastro extends MY_Controller{
           $this->session->set_flashdata('mensagem',
           '<div class="alert alert-danger">Atenção: O Formulário '. $this->form_sigla. ' ainda não existe!</div>');
           redirect('form/index/edit/'.$this->form_id);
-        }else{
-      //    redirect('campos/index/add');
         }
-
 
         $tabela        = $this->form_sigla;
         $tabela_campos = 'campos';
@@ -99,6 +96,9 @@ class Form_cadastro extends MY_Controller{
         $this->crud->set_subject( 'Inscrições no '.$this->form_sigla );
 
         $this->crud->set_table( $tabela );
+
+        $this->set_rules();
+
 
         $detalhes = array();
         $detalhes = $this->form_cadastro_model->getFieldsLabelRules($this->form_id, "field,label", 0, 1, $tabela_campos);
@@ -111,7 +111,6 @@ class Form_cadastro extends MY_Controller{
 
         $this->crud->columns        ( $this->form_cadastro_model->getFields($this->form_id, 0, 1, 0  ,$tabela_campos ));
         $this->crud->fields         ( $this->form_cadastro_model->getFields($this->form_id, 0, 0, 1  ,$tabela_campos ));
-        // print_r($this->form_cadastro_model->getFields($this->form_id, 0, 0, 1  ,$tabela_campos ));
         $this->crud->required_fields( $this->form_cadastro_model->getFields($this->form_id, 1, 0, 0  ,$tabela_campos ));
 
         $this->crud->set_rules( $this->form_cadastro_model->getFieldsLabelRules($this->form_id,"field,label,rules", 0,0,$tabela_campos) );
@@ -120,7 +119,6 @@ class Form_cadastro extends MY_Controller{
         $this->crud->field_type( 'form_id'      , 'hidden', $this->form_id );
         $this->crud->field_type( 'data_cadastro', 'hidden');
 
-        // $this->set_rules();
 
         $upload = array();
         $upload = $this->form_cadastro_model->getFieldsLabelRules($this->form_id,"field,upload", 1,0,$tabela_campos);
@@ -144,7 +142,7 @@ class Form_cadastro extends MY_Controller{
 
         $this->crud->callback_after_delete(array($this, 'after_delete'));
 
-        $this->crud->set_rules('usuario_id','form_cadastro','callback_before_insert');
+        $this->crud->set_rules('usuario_id','form_cadastro','before_insert');
 
         $this->load->vars($this->crud->render());
         $this->load->view( 'gerenciar' );
@@ -159,9 +157,9 @@ class Form_cadastro extends MY_Controller{
       $this->crud->set_rules('usuario_id','Usuários','required');
       $this->crud->set_rules('form_id','Formulário','required');
       if ( $this->crud->getState() == 'insert' || $this->crud->getState() == 'insert_validation'){
-           $this->crud->set_rules('usuario_id','Usuários','callback_unique_form_cadastro['.$this->input->post('form_id').']');
+           $this->crud->set_rules('usuario_id','Usuários','unique_form_cadastro['.$this->input->post('form_id').']');
       }
-      $this->crud->set_rules('form_id','Formulários','callback_checar_campos['.$this->input->post('form_id').']');
+      $this->crud->set_rules('form_id','Formulários','checar_campos['.$this->input->post('form_id').']');
     }
 
     public function unique_form_cadastro( $pk1, $pk2 ){
@@ -175,16 +173,18 @@ class Form_cadastro extends MY_Controller{
       }
     }
 
-    public function checar_campos($pk1, $pk2) {
+    public function checar_campos($valor){
+      if($this->db->table_exists($this->form_sigla)){
+        $query_campo  = $this->db->query('SELECT COUNT(*) AS qtd_campos FROM information_schema.columns WHERE table_schema ="sabitu" AND table_name ="'.$this->form_sigla.'"');
+        $campos = $query_campo->row();
 
-      $this->db->where('form_id', $pk2);
-      if( $this->db->count_all_results('campos') < 1 ) {
-        $this->form_validation->set_message('checar_campos','Cadastre pelo menos um campo para este Formulário.');
-        return false;
-      } else {
-        return true;
+        if( ($campos->qtd_campos-4) == 0) {
+          $this->form_validation->set_message('checar_campos','Cadastre pelo menos um campo para este Formulário.');
+          return false;
+        }else{
+          return true;
+        }
       }
-
     }
 
     public function before_insert_update( $array_post ) {

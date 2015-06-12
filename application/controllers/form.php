@@ -77,7 +77,7 @@ class Form extends MY_Controller {
       if($this->db->table_exists($row->sigla)){
         $query_campo  = $this->db->query('SELECT COUNT(*) AS qtd_campos FROM information_schema.columns WHERE table_schema ="sabitu" AND table_name ="'.$row->sigla.'"');
         $campos = $query_campo->row();
-        return $campos->qtd_campos;
+        return $campos->qtd_campos-4;
       }else{
         return 0;
       }

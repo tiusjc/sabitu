@@ -17,15 +17,28 @@ class Campos extends MY_Controller {
       $this->output->enable_profiler(TRUE);
     }
 
+
     public function index(){
 
     try {
+          if($this->uri->segment(4) !== null){
+            $this->form_id     = $this->uri->segment(4);
+
+            $this->form_sigla  = $this->form_model->getField($this->form_id,'sigla');
+            $this->form_nome   = $this->form_model->getField($this->form_id,'descricao');
+            $this->form_rodape = $this->form_model->getField($this->form_id,'rodape');
+
+            $this->session->set_userdata( 'form_id'    , $this->form_id );
+            $this->session->set_userdata( 'form_sigla' , $this->form_sigla );
+            $this->session->set_userdata( 'form_nome'  , $this->form_nome );
+            $this->session->set_userdata( 'form_rodape', $this->form_rodape );
+          }
+
           if(!$this->form_id){
             $this->session->set_flashdata('mensagem',
             '<div class="alert alert-danger">Atenção: Selecione um Formulário '. $this->form_sigla. ' para criar campos!</div>');
             redirect('form_cadastro');
           }
-
 
           $nome_tabela = "campos";
 
@@ -122,7 +135,7 @@ class Campos extends MY_Controller {
           $this->crud->set_relation_n_n('Regras', 'campos_tem_regras', 'campos_regras', 'campos_id', 'campos_regras_id', 'regra');
 
           $this->crud->columns(          "field", "type", "size", "label","Regras","grid", "add_edit", "upload", "ordem");
-          $this->crud->fields("form_id", "field", "type", "size", "label","Regras","grid", "add_edit", "upload", "ordem");
+          $this->crud->fields("field", "type", "size", "label","Regras","grid", "add_edit", "upload", "ordem");
 
           $this->crud->required_fields('field' , 'type');
 
@@ -131,7 +144,7 @@ class Campos extends MY_Controller {
           $this->crud->display_as('field','Nome do campo');
           $this->crud->display_as('size','Tamanho');
           $this->crud->display_as('label','Exibir como');
-          //$this->crud->display_as('rules','Regras de validação Ex: required|md5|min(5)|max(6)');
+          // $this->crud->display_as('rules','Regras de validação Ex: required|md5|min(5)|max(6)');
           $this->crud->display_as('grid','Mostra na grade');
           $this->crud->display_as('add_edit','Mostra na Inclusão/Edição');
           $this->crud->display_as('upload','Upload');
