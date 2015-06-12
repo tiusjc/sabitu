@@ -15,6 +15,7 @@ if (!defined('BASEPATH'))
 
 
     public function index(){
+      $tabela        = $this->form_sigla;
       $tabela_campos = "campos";
 
       $form_existe  = $this->form_model->getForm_existe( $this->form_sigla );
@@ -25,6 +26,18 @@ if (!defined('BASEPATH'))
         redirect('form_cadastro');
       }
       $this->crud->set_table( $this->form_sigla );
+
+      $detalhes = array();
+      $detalhes = $this->form_cadastro_model->getFieldsLabelRules($this->form_id, "field,label", 0, 1, $tabela_campos);
+
+      for($i=0;$i < count($detalhes);$i++){
+          $this->crud->set_relation_n_n( $detalhes[$i]["field"], $tabela.'_tem_'.$detalhes[$i]["field"] ,$tabela.'_'.$detalhes[$i]["field"],
+                                                  $tabela.'_id', $tabela.'_'.$detalhes[$i]["field"].'_id','descricao',
+                                                  null, array( 'form_id' => $this->form_id));
+      }
+
+      $this->crud->columns        ( $this->form_cadastro_model->getFields($this->form_id, 0, 1, 0  ,$tabela_campos ));
+      $this->crud->fields         ( $this->form_cadastro_model->getFields($this->form_id, 0, 0, 1  ,$tabela_campos ));
 
       $this->crud->display_as('usuario_id' ,'Usuário');
       $this->crud->display_as('form_id'    ,'Formulário');

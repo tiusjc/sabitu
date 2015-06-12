@@ -119,8 +119,11 @@ class Campos extends MY_Controller {
             $this->dbforge->create_table($nome_tabela);
           }
 
+          $this->crud->set_relation_n_n('Regras', 'campos_tem_regras', 'campos_regras', 'campos_id', 'campos_regras_id', 'regra');
 
-          $this->crud->columns("form_id", "field", "type", "size", "label","rules", "grid", "add_edit", "upload", "ordem");
+          $this->crud->columns("form_id", "field", "type", "size", "label","Regras","grid", "add_edit", "upload", "ordem");
+          $this->crud->fields("form_id", "field", "type", "size", "label","Regras","grid", "add_edit", "upload", "ordem");
+
           $this->crud->required_fields('field' , 'type');
 
           $this->crud->display_as('form_id','Formulário');
@@ -128,10 +131,11 @@ class Campos extends MY_Controller {
           $this->crud->display_as('field','Nome do campo');
           $this->crud->display_as('size','Tamanho');
           $this->crud->display_as('label','Exibir como');
-          // $this->crud->display_as('rules','Regras de validação Ex: required|md5|min(5)|max(6)');
+          //$this->crud->display_as('rules','Regras de validação Ex: required|md5|min(5)|max(6)');
           $this->crud->display_as('grid','Mostra na grade');
           $this->crud->display_as('add_edit','Mostra na Inclusão/Edição');
           $this->crud->display_as('upload','Upload');
+
 
           $this->crud->set_table( $nome_tabela );
           $this->crud->order_by('form_id asc,ordem');

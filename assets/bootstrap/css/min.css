@@ -96,7 +96,7 @@ width: 220px !important;
 
 .chzn-container {
 
-width: 244px !important;
+width: 500px !important;
 }
 
 .form-field-box.even {
@@ -143,7 +143,7 @@ background: #fff !important;
 }
 
 .ui-widget-header {
-	background: #ccc url(images/wbg.gif) !important;
+	/*background: #ccc url(images/wbg.gif) !important;*/
 }
 
 table.dataTable {
@@ -238,4 +238,63 @@ padding-bottom: 0px !important;
 margin-left: 5px !important;
 display: block !important;
 
+}
+.ui-widget-header {
+  border: 0px solid #fff;
+}
+label {
+
+  margin-top: 4px;
+  margin-bottom: 0px;
+}
+
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+
+}
+table.dataTable thead th {
+
+  border-bottom: 0px solid black;
+}
+
+table.dataTable tfoot th {
+
+  border-top: 0px solid black;
+}
+.ui-button .ui-button-text {
+  display: inline-block;
+}
+.datatables-add-button{
+  margin:0px;
+
+}
+.datatables-add-button span.btn{
+  font-size: 10px;
+  padding: 5px 10px;
+}
+
+table tfoot tr th.ui-state-default {
+  background:#fff ;
+}
+
+table thead tr th.ui-state-default {
+  background:#fff ;
+}
+
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+  border-bottom-right-radius: 0px;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+   border-bottom-left-radius: 0px;
+}
+
+.datatables-add-button a.add_button span.btn.btn-info.glyphicon.glyphicon-plus{
+  top:0px;
+
+}
+.datatables-add-button a.add_button span.btn{
+  border-radius: 0px;
 }

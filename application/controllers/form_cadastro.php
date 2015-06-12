@@ -25,7 +25,7 @@ class Form_cadastro extends MY_Controller{
 
       if( $this->adm ){
 
-        $this->crud->add_action('Mostrar', '', 'form_cadastro/form/add','read-icon');
+        $this->crud->add_action('Mostrar', '', 'form_cadastro/form/add','glyphicon-search');
         $this->crud->unset_delete();
         $this->crud->unset_edit();
         $this->crud->unset_add();
@@ -108,6 +108,7 @@ class Form_cadastro extends MY_Controller{
 
         $this->crud->columns        ( $this->form_cadastro_model->getFields($this->form_id, 0, 1, 0  ,$tabela_campos ));
         $this->crud->fields         ( $this->form_cadastro_model->getFields($this->form_id, 0, 0, 1  ,$tabela_campos ));
+        // print_r($this->form_cadastro_model->getFields($this->form_id, 0, 0, 1  ,$tabela_campos ));
         $this->crud->required_fields( $this->form_cadastro_model->getFields($this->form_id, 1, 0, 0  ,$tabela_campos ));
 
         $this->crud->set_rules( $this->form_cadastro_model->getFieldsLabelRules($this->form_id,"field,label,rules", 0,0,$tabela_campos) );
