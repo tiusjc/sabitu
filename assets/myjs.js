@@ -83,7 +83,7 @@ $( document ).ready(function() {
   // REGRAS PARA ADICIONAR UM BOTÃO + AO LADO DOS CAMPOS UM-PARA-MUITO NOS FORMULÁRIOS
   // EX: OPÇÕES [+]
   // ------------------------------------------------------------------------
-  if( window.location.href.indexOf("form_cadastro/form/add/") >= 0){
+//  if( window.location.href.indexOf("form_cadastro/form/add/") >= 0){
 
     $('div.form-input-box').each(function(index, value){
       var strhtml = $.trim($(this).html());
@@ -102,8 +102,8 @@ $( document ).ready(function() {
         $('#'+strid +'_input_box').after('<a style="border-top-left-radius: 0px;border-bottom-left-radius: 0px;" class="add_button ui-button ui-widget" href="http://'+strhref+'/sabitu/umpara/index/'+ strid +'"><div  style="height:32px;border-radius: 0px;" class="btn btn-primary"><span class="glyphicon glyphicon-plus read-icon Mff75d76a"></span></div></a>');
       }
     });
-    $( 'a.add_button' ).wrap( "<div style='float:left;width:25px;height:30px'>");
-  }
+  //  $( 'a.add_button' ).wrap( "<div style='float:left;width:25px;height:30px'>");
+//  }
 
   // ------------------------------------------------------------------------
   // REGRAS PARA COLOCAR O NOME DA TABELA APÓS O TEXTO ADICIONAR NO CADASTRO DE CAMPOS UM-PARA-MUITOS
@@ -130,11 +130,11 @@ $( document ).ready(function() {
     strregras = $.trim($('div#Regras_display_as_box.form-display-as-box').html());
 
     regrastxt =
-    '<span id="lgreater_4" style="display:none">Maior que <input  id="greater_4" class="numregras form-control" name="rules" type="text" maxlength="20" style="width:20px;height:20px;padding:2px 2px 2px 2px;font-size:11px;margin-bottom:2px"></span>'+
-    '<span id="lmenorque_6" style="display:none">Menor que <input  id="menorque_6" class="numregras form-control" name="rules" type="text" maxlength="20" style="width:20px;height:20px;padding:2px 2px 2px 2px;font-size:11px;margin-bottom:2px"></span>'+
-    '<span id="lmax_7" style="display:none">Máx <input        id="max_7"      class="numregras form-control" name="rules" type="text" maxlength="20" style="width:20px;height:20px;padding:2px 2px 2px 2px;font-size:11px;margin-bottom:2px"></span>'+
-    '<span id="lmin_8" style="display:none">Min <input        id="min_8"      class="numregras form-control" name="rules" type="text" maxlength="20" style="width:20px;height:20px;padding:2px 2px 2px 2px;font-size:11px;margin-bottom:2px"></span>'+
-    '<span id="lexa_3" style="display:none">Exatamente <input id="exa_3"      class="numregras form-control" name="rules" type="text" maxlength="20" style="width:20px;height:20px;padding:2px 2px 2px 2px;font-size:11px;margin-bottom:2px"></span>';
+    '<span id="lgreater_4" style="">Maior que <input  id="greater_4" class="numregras form-control" name="rules" type="text" maxlength="20" style="width:20px;height:20px;padding:2px 2px 2px 2px;font-size:11px;margin-bottom:2px"></span>'+
+    '<span id="lmenorque_6" style="">Menor que <input  id="menorque_6" class="numregras form-control" name="rules" type="text" maxlength="20" style="width:20px;height:20px;padding:2px 2px 2px 2px;font-size:11px;margin-bottom:2px"></span>'+
+    '<span id="lmax_7" style="">Máx <input        id="max_7"      class="numregras form-control" name="rules" type="text" maxlength="20" style="width:20px;height:20px;padding:2px 2px 2px 2px;font-size:11px;margin-bottom:2px"></span>'+
+    '<span id="lmin_8" style="">Min <input        id="min_8"      class="numregras form-control" name="rules" type="text" maxlength="20" style="width:20px;height:20px;padding:2px 2px 2px 2px;font-size:11px;margin-bottom:2px"></span>'+
+    '<span id="lexa_3" style="">Exatamente <input id="exa_3"      class="numregras form-control" name="rules" type="text" maxlength="20" style="width:20px;height:20px;padding:2px 2px 2px 2px;font-size:11px;margin-bottom:2px"></span>';
 
     $('div#Regras_display_as_box.form-display-as-box').html(strregras + regrastxt);
 

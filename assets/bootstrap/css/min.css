@@ -96,7 +96,7 @@ width: 220px !important;
 
 .chzn-container {
 
-width: 500px !important;
+width: 500px !important;*/
 }
 
 .form-field-box.even {
@@ -151,7 +151,7 @@ font-size: 11px;
 	}
 
 
-  .dataTables_length {
+.dataTables_length {
 
   font-size: 11px !important;
 }
@@ -267,13 +267,24 @@ table.dataTable tfoot th {
 .ui-button .ui-button-text {
   display: inline-block;
 }
+
 .datatables-add-button{
   margin:0px;
 
 }
+
 .datatables-add-button span.btn{
   font-size: 10px;
   padding: 5px 10px;
+}
+
+.datatables-add-button a.add_button span.btn.btn-info.glyphicon.glyphicon-plus{
+  top:0px;
+
+}
+
+.datatables-add-button a.add_button span.btn{
+  border-radius: 0px;
 }
 
 table tfoot tr th.ui-state-default {
@@ -290,11 +301,8 @@ table thead tr th.ui-state-default {
 .ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
    border-bottom-left-radius: 0px;
 }
+a.add_button{
+  float:left;
 
-.datatables-add-button a.add_button span.btn.btn-info.glyphicon.glyphicon-plus{
-  top:0px;
 
-}
-.datatables-add-button a.add_button span.btn{
-  border-radius: 0px;
 }

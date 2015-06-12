@@ -121,7 +121,7 @@ class Campos extends MY_Controller {
 
           $this->crud->set_relation_n_n('Regras', 'campos_tem_regras', 'campos_regras', 'campos_id', 'campos_regras_id', 'regra');
 
-          $this->crud->columns("form_id", "field", "type", "size", "label","Regras","grid", "add_edit", "upload", "ordem");
+          $this->crud->columns(          "field", "type", "size", "label","Regras","grid", "add_edit", "upload", "ordem");
           $this->crud->fields("form_id", "field", "type", "size", "label","Regras","grid", "add_edit", "upload", "ordem");
 
           $this->crud->required_fields('field' , 'type');
@@ -136,6 +136,7 @@ class Campos extends MY_Controller {
           $this->crud->display_as('add_edit','Mostra na Inclusão/Edição');
           $this->crud->display_as('upload','Upload');
 
+          $this->crud->field_type( 'form_id', 'hidden');
 
           $this->crud->set_table( $nome_tabela );
           $this->crud->order_by('form_id asc,ordem');
@@ -158,7 +159,7 @@ class Campos extends MY_Controller {
           $this->crud->callback_before_delete(array($this, 'delete_field'));
 
 
-          $this->crud->set_relation('form_id','form','descricao');
+        //  $this->crud->set_relation('form_id','form','descricao');
 
           $this->load->vars($this->crud->render());
           $this->load->view('gerenciar.php');
@@ -261,20 +262,18 @@ class Campos extends MY_Controller {
   	     }
       }
 
-   function before_insert_update( $array_post ) {
+      function before_insert_update( $array_post ){
+        $array_post['form_id'] = $this->form_id;
 
         if( $array_post['type'] == 'UM-PARA-MUITOS'){
-            $array_post['grid'] = 0;
-            $array_post['add_edit'] = 1;
+          $array_post['grid'] = 0;
+          $array_post['add_edit'] = 1;
         }
 
         if($array_post['label'] == ''){
-           $array_post['label'] = $array_post['field'];
+          $array_post['label'] = $array_post['field'];
         }
-
-
         return $array_post;
-
       }
-}
+    }
 }

@@ -26,6 +26,7 @@ class Form_cadastro extends MY_Controller{
       if( $this->adm ){
 
         $this->crud->add_action('Mostrar', '', 'form_cadastro/form/add','glyphicon-search');
+        $this->crud->add_action('Adicionar', 'campos', 'campos/index/add','glyphicon-plus');
         $this->crud->unset_delete();
         $this->crud->unset_edit();
         $this->crud->unset_add();
@@ -33,7 +34,6 @@ class Form_cadastro extends MY_Controller{
       }else{
 
           if( $this->usuarios_model->validarUsuario_nome( $this->usuario_id ) ){
-
 
               redirect('form_cadastro/form');
 
@@ -63,6 +63,7 @@ class Form_cadastro extends MY_Controller{
           $this->session->set_userdata( 'form_nome' , $this->form_nome );
           $this->crud->unset_back_to_list();
 
+
         } else {
 
           $this->crud->unset_print();
@@ -85,7 +86,9 @@ class Form_cadastro extends MY_Controller{
         if( !$form_existe ){
           $this->session->set_flashdata('mensagem',
           '<div class="alert alert-danger">Atenção: O Formulário '. $this->form_sigla. ' ainda não existe!</div>');
-          redirect('form_cadastro');
+          redirect('form/index/edit/'.$this->form_id);
+        }else{
+      //    redirect('campos/index/add');
         }
 
 
